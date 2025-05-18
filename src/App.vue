@@ -18,8 +18,8 @@ const popUpBox = useTemplateRef<typeof PopUpBox>('popUpBox')
     <div class="wrapper">
       <PopUpBox ref="popUpBox"/>
       <Button @click="popUpBox?.setVisible(true)" label="l" />
-      <li v-for="post in posts" :key="post.text">
-        {{ post.text }}
+      <li v-for="post in posts" :key="post.text" style="list-style-type: none;">
+        <div v-html="post.text"/>
       </li>
     </div>
   </header>

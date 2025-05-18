@@ -2,8 +2,7 @@
 import { ref } from "vue";
 import Dialog from "primevue/dialog"
 import Button from "primevue/button"
-
-import InputText from 'primevue/inputtext';
+import Editor from 'primevue/editor';
 import PostsManager from "./PostsManager";
 import Post from "./Post";
 const visible = ref(false);
@@ -23,18 +22,19 @@ defineExpose({setVisible})
 
 <template>
 
-    <div class="card flex justify-center">
+   
        
-        <Dialog v-model:visible="visible" modal header="Edit Profile" :style="{ width: '25rem' }">
-            <span class="text-surface-500 dark:text-surface-400 block mb-8">Input text</span>
-            <div class="flex items-center gap-4 mb-4">
-                <InputText v-model="text" id="text" class="flex-auto" autocomplete="off" />
-            </div>
-            <div class="flex justify-end gap-2">
-                <Button type="button" label="Cancel" severity="secondary" @click="visible = false"></Button>
+        <Dialog v-model:visible="visible" modal header="Create post" style="width:75%;height:80%" contentStyle= "height:100%; display:flex; flex-direction:column;"    >
+       
+                <Editor style="flex-grow:1; display:flex; flex-direction: column; margin-bottom: 0.5rem;" v-model="text" id="text"/>
+   
+                <div class="dialogbox-button-wrapper" style="margin-top: auto;">
+                    <Button type="button" label="Cancel" severity="secondary" @click="visible = false"></Button>
                 <Button type="button" label="Save" @click="saveHandler()"></Button>
-            </div>
+                </div>
+                
+           
         </Dialog>
-    </div>
+
 </template>
 
