@@ -6,35 +6,36 @@ import Editor from 'primevue/editor';
 import PostsManager from "./PostsManager";
 import Post from "./Post";
 const visible = ref(false);
-const setVisible = (v:boolean) => { 
+const setVisible = (v: boolean) => {
     visible.value = v
 }
-
+const postsManager: PostsManager = PostsManager.getPostManager();
 const text = ref("");
 const saveHandler = () => {
     visible.value = false
-    PostsManager.addPost(new Post(text.value));
+    postsManager.addPost(new Post(text.value));
     text.value = ""
 }
 
-defineExpose({setVisible})
+defineExpose({ setVisible })
 </script>
 
 <template>
 
-   
-       
-        <Dialog v-model:visible="visible" modal header="Create post" style="width:75%;height:80%" contentStyle= "height:100%; display:flex; flex-direction:column;"    >
-       
-                <Editor style="flex-grow:1; display:flex; flex-direction: column; margin-bottom: 0.5rem;" v-model="text" id="text"/>
-   
-                <div class="dialogbox-button-wrapper" style="margin-top: auto;">
-                    <Button type="button" label="Cancel" severity="secondary" @click="visible = false"></Button>
-                <Button type="button" label="Save" @click="saveHandler()"></Button>
-                </div>
-                
-           
-        </Dialog>
+
+
+    <Dialog v-model:visible="visible" modal header="Create post" style="width:75%;height:80%"
+        contentStyle="height:100%; display:flex; flex-direction:column;">
+
+        <Editor style="flex-grow:1; display:flex; flex-direction: column; margin-bottom: 0.5rem;" v-model="text"
+            id="text" />
+
+        <div class="dialogbox-button-wrapper" style="margin-top: auto;">
+            <Button type="button" label="Cancel" severity="secondary" @click="visible = false"></Button>
+            <Button type="button" label="Save" @click="saveHandler()"></Button>
+        </div>
+
+
+    </Dialog>
 
 </template>
-
