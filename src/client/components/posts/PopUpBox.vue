@@ -5,6 +5,7 @@ import Button from "primevue/button"
 import Editor from 'primevue/editor';
 import PostsManager from "./PostsManager";
 import Post from "./Post";
+
 const visible = ref(false);
 const setVisible = (v: boolean) => {
     visible.value = v
