@@ -1,7 +1,11 @@
 import { fileURLToPath, URL } from 'node:url'
 import express from 'express'
+import 'dotenv/config'
+import {db} from "./db/db"
+
 const app = express()
 const port = 3000
+db.connect();
 
 app.use(express.static(fileURLToPath(new URL('../client/dist/', import.meta.url))))
 app.get('/', (req, res) => {

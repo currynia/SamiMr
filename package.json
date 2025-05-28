@@ -11,13 +11,14 @@
     "type-check": "vue-tsc --build",
     "lint": "eslint . --fix",
     "serve-b": "npm run build && npx tsc && npx tsx  ./src/server/server.ts",
-    "serve" : "npx tsc && npx tsx  ./src/server/server.ts"
+    "serve": "npx tsc && npx tsx  ./src/server/server.ts"
   },
   "dependencies": {
     "@primeuix/themes": "^1.1.1",
     "@primevue/forms": "^4.3.4",
     "dotenv": "^16.5.0",
     "express": "^5.1.0",
+    "pg-promise": "^11.13.0",
     "primevue": "^4.3.4",
     "quill": "^2.0.3",
     "vue": "^3.5.13",
