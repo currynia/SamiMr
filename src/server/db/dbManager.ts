@@ -1,5 +1,5 @@
 import pgPromise from "pg-promise"
-import { createUserTableIfNotExists } from "./schema/userTable";
+import { createUserTableIfNotExists } from "./schema/usersTable";
 
 class DBManager {
   pgp = pgPromise();
