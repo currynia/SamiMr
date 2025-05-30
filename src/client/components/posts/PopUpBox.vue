@@ -22,9 +22,6 @@ defineExpose({ setVisible })
 </script>
 
 <template>
-
-
-
     <Dialog v-model:visible="visible" modal header="Create post" style="width:75%;height:80%"
         contentStyle="height:100%; display:flex; flex-direction:column;">
 

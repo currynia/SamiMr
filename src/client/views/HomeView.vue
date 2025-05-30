@@ -16,7 +16,7 @@ function toggleDarkMode() {
 }
 </script>
 <template>
-     
+
     <Toolbar style="width: 100vw; margin:0;">
         <template #start>
             <Button label="Toggle Dark Mode" @click="toggleDarkMode()" />
@@ -26,11 +26,11 @@ function toggleDarkMode() {
             <div style="display: block;">
                 <Button @click="popUpBox?.setVisible(true);" label="Create post" />
                 <Button @click="$router.push('/auth/login')" label="Login" />
-                <Button @click="popUpBox?.setVisible(true);" label="Sign up" />
+                <Button @click="$router.push('/auth/register');" label="Sign up" />
             </div>
         </template>
     </Toolbar>
-   
+
     <PopUpBox ref="popUpBox"/>
     <PostsFeedView />
 </template>

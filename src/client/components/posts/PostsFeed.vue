@@ -9,13 +9,7 @@ const posts: Ref<Post[]> = postsManager.getPosts();
 </script>
 
 <template>
-
- 
-
   <div class="wrapper" style="display:flex; flex-direction: column; width: 100%; height:100%">
-
-   
-    
     <div style="display:flex; flex-direction: column; gap: 1rem; height:100%; padding: 2rem;">
       <li v-for="post in posts" :key="post.text" style="list-style-type: none;">
       <Card class="postCard">
@@ -25,7 +19,7 @@ const posts: Ref<Post[]> = postsManager.getPosts();
       </Card>
     </li>
     </div>
-    
+
   </div>
 
 </template>
@@ -33,7 +27,7 @@ const posts: Ref<Post[]> = postsManager.getPosts();
 <style scoped>
 .postContent *{
   width: 100%;
-  
+
             overflow: hidden;
             text-overflow: ellipsis;
             white-space: nowrap;
