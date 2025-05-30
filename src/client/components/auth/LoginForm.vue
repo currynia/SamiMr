@@ -12,7 +12,7 @@ const text = ref("");
 
 const initialValues = ref()
 
-function onFormSubmit(e: FormSubmitEvent<Record<string,any>>): undefined {
+function onFormSubmit(e: FormSubmitEvent<Record<string,never>>): undefined {
     const lol = fetch('api/auth/login', {method:"POST"}).then(_e=>console.log("LOL"))
 }
 
