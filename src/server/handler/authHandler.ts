@@ -9,8 +9,14 @@ export const login = (req: Request, res: Response) => {
   res.json({ message: 'Login logic not implemented yet' });
 };
 
-export const register = (req: Request, res: Response) => {
+export const register = async (req: Request, res: Response) => {
   console.log('Register request:', req.body);
-  registerController(db, req.body.username, req.body.password);
-  res.json({ message: 'Register logic not implemented yet' });
+  try {
+    await registerController(db, req.body.username, req.body.password);
+    res.status(200).send();
+  }
+  catch (e) {
+    console.log(e);
+    res.status(400).send();
+  }
 };
