@@ -16,6 +16,6 @@ export default defineConfig({
       '@': fileURLToPath(new URL('./src/client', import.meta.url)),
     },
   },
-  root:"./src"
+  root:"./src/client"
 })
 
