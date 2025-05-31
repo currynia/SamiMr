@@ -3,6 +3,7 @@ import express from 'express'
 import 'dotenv/config'
 import DBManager from "./db/dbManager"
 import authRouter from "./router/auth"
+import postRouter from './router/posts'
 
 const app = express()
 const port = 3000
@@ -16,6 +17,7 @@ app.get('/', (req, res) => {
 })
 
 app.use("/api/auth", authRouter)
+app.use("/api/post", postRouter)
 
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`)

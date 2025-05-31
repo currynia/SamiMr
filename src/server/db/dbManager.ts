@@ -1,5 +1,6 @@
 import pgPromise from "pg-promise"
 import { createUserTableIfNotExists } from "./schema/usersTable";
+import { createPostsTableIfNotExists } from "./schema/postsTable";
 
 class DBManager {
   pgp = pgPromise();
@@ -54,6 +55,7 @@ private static dbManager : DBManager | null = null;
     try {
       const p1 =  createUserTableIfNotExists(this.db);
       await Promise.all([p1]);
+      await createPostsTableIfNotExists(this.db)
     } catch (error) {
       console.error('Error:', error);
     }
