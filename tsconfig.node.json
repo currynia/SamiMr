@@ -9,6 +9,7 @@
     "paths": {
       "@/*": ["src/server/*"],
       "@root/*": ["src/*"]
-    }
+    },
+    "outDir": "./dist",
   }
 }

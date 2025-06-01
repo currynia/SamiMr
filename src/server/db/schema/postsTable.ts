@@ -1,12 +1,13 @@
-import type { DB } from "@/db/types";
+import type { IDatabase } from "pg-promise";
 
-export async function createPostsTableIfNotExists(db : DB) {
+
+export async function createPostsTableIfNotExists(db:IDatabase<unknown>) {
   db.none(` CREATE TABLE IF NOT EXISTS Posts (
-    id PRIMARY KEY AUTO_INCREMENT,
-    author_id TEXT UNIQUE NOT NULL,
+    id SERIAL PRIMARY KEY,
+    author_id INT NOT NULL,
     title TEXT NOT NULL,
     body TEXT NOT NULL,
-    created_at TIMESTAMP DEFAULT now(),
+    created_at DATE NOT NULL,
     FOREIGN KEY (author_id) REFERENCES Users(id)
   );`)
 }
