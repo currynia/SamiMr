@@ -3,17 +3,33 @@ import Toolbar from 'primevue/toolbar';
 import PostFeed from '@/components/posts/PostsFeed.vue';
 
 import Button from "primevue/button";
-import {ref, useTemplateRef, defineAsyncComponent } from "vue";
+import { ref, useTemplateRef, defineAsyncComponent, type Ref } from "vue";
+import PostsManager from '@/components/posts/postsManager';
+import type { PostDto } from '@dto/postDto';
+import Post from '@/components/posts/post';
 
 
 
 const PopUpBox = defineAsyncComponent(() => import("@/components/posts/PopUpBox.vue"));
-
+const postsManager = PostsManager.getPostManager();
 const popUpBox = useTemplateRef<typeof PopUpBox>("popUpBox");
 
 function toggleDarkMode() {
     document.documentElement.classList.toggle('my-app-dark');
 }
+
+const savePostCallback = (s: { title: string, body: string }) => {
+    const p: PostDto = new Post(s.title, s.body, "", new Date());//placeholder
+    postsManager.addPost(p);
+    fetch("/api/post/save",
+        {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(p)
+        });
+};
+const isPopUpBoxVisible : Ref<boolean> = ref(false);
+
 </script>
 <template>
 
@@ -24,13 +40,16 @@ function toggleDarkMode() {
         </template>
         <template #end>
             <div style="display: block;">
-                <Button @click="popUpBox?.setVisible(true);" label="Create post" />
+                <Button @click="isPopUpBoxVisible = true; popUpBox?.setVisible(true)" label="Create post" />
                 <Button @click="$router.push('/auth/login')" label="Login" />
                 <Button @click="$router.push('/auth/register');" label="Sign up" />
             </div>
         </template>
     </Toolbar>
 
-    <PopUpBox ref="popUpBox"/>
+        <PopUpBox
+    v-if = "isPopUpBoxVisible"
+    ref="popUpBox"
+    :save-handler-callback="savePostCallback"/>
     <PostFeed />
 </template>

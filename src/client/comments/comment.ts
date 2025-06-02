@@ -1,12 +1,14 @@
 import type { CommentDto } from "@dto/commentDto";
-class Comment implements CommentDto {
-    parentPost: number;
-    parentComment: number;
-    body: string;
+export class Comment implements CommentDto {
+  commentId: number;
+  parentPost: number;
+  parentComment?: number;
+  body: string;
 
-    constructor(parentPost:number, parentComment:number, body:string) {
-        this.parentPost = parentPost;
-        this.parentComment = parentComment;
-        this.body = body;
-    }
+  constructor(parentPost: number, parentComment: number, body: string, commentId: number = -1) {
+    this.parentPost = parentPost;
+    this.parentComment = parentComment;
+    this.body = body;
+    this.commentId = commentId;
+  }
 }

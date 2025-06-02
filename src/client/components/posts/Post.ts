@@ -5,7 +5,7 @@ class Post implements PostDto {
   body: string;
   authorName:string;
   dateTime : Date;
-  constructor(body: string = "", title: string = "", authorName:string= "", dateTime: Date = new Date()) {
+  constructor(title: string = "", body: string = "", authorName:string= "", dateTime: Date = new Date()) {
     this.body = body;
     this.title = title;
     this.authorName = authorName;
