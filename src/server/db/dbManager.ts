@@ -1,4 +1,4 @@
-import pgPromise from "pg-promise"
+import pgPromise from "pg-promise";
 import { createUserTableIfNotExists } from "./schema/usersTable";
 import { createPostsTableIfNotExists } from "./schema/postsTable";
 
@@ -8,7 +8,7 @@ class DBManager {
   user = process.env.PSQL_USER;
   port = Number(process.env.PSQL_PORT);
   password = process.env.PSQL_PASS;
-  dbName = 'proext'
+  dbName = 'proext';
 
   adminDb = this.pgp({
     host: this.host,
@@ -55,7 +55,7 @@ private static dbManager : DBManager | null = null;
     try {
       const p1 =  createUserTableIfNotExists(this.db);
       await Promise.all([p1]);
-      await createPostsTableIfNotExists(this.db)
+      await createPostsTableIfNotExists(this.db);
     } catch (error) {
       console.error('Error:', error);
     }
@@ -63,7 +63,7 @@ private static dbManager : DBManager | null = null;
 
   public static getDBManager() : DBManager {
     if (DBManager.dbManager == null) {
-      DBManager.dbManager = new DBManager()
+      DBManager.dbManager = new DBManager();
     }
     return DBManager.dbManager;
   }

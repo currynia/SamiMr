@@ -1,11 +1,10 @@
 <script setup lang="ts">
 import type Post from './post';
-import { defineProps } from 'vue';
 import Card from "primevue/card";
 interface Props {
    post:Post,
 }
-const {} = defineProps<Props>()
+const {} = defineProps<Props>();
 </script>
 
 <template>

@@ -6,5 +6,5 @@ export async function createUserTableIfNotExists(db:IDatabase<unknown>) {
     username TEXT UNIQUE NOT NULL,
     password TEXT NOT NULL,
     created_at TIMESTAMP DEFAULT now()
-  );`)
+  );`);
 }

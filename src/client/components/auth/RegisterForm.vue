@@ -17,9 +17,9 @@ function onFormSubmit(e: FormSubmitEvent<Record<string,never>>): undefined {
   if (e.valid) {
     const username = e.states.username.value;
     const password = e.states.password.value;
-    fetch('/api/auth/register', {method:"POST", headers:{"Content-Type":"application/json"}, body:JSON.stringify({username:username, password:password})})
+    fetch('/api/auth/register', {method:"POST", headers:{"Content-Type":"application/json"}, body:JSON.stringify({username:username, password:password})});
   }
-    console.log(e)
+    console.log(e);
 }
 
 const resolver = ref(zodResolver(

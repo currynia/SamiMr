@@ -10,10 +10,10 @@ const visible = ref(false);
 
 const text = ref("");
 
-const initialValues = ref()
+const initialValues = ref();
 
 function onFormSubmit(e: FormSubmitEvent<Record<string,never>>): undefined {
-    const lol = fetch('api/auth/login', {method:"POST"}).then(_e=>console.log("LOL"))
+    const lol = fetch('api/auth/login', {method:"POST"}).then(_e=>console.log("LOL"));
 }
 
 const resolver = ref(zodResolver(

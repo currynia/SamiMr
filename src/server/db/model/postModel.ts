@@ -14,4 +14,4 @@ export const savePostModel = (
     VALUES ($1, $2, $3, $4)
     `,
     [authorId, title, body, dateTime]);
-}
+};

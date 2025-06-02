@@ -9,5 +9,5 @@ export async function createPostsTableIfNotExists(db:IDatabase<unknown>) {
     body TEXT NOT NULL,
     created_at DATE NOT NULL,
     FOREIGN KEY (author_id) REFERENCES Users(id)
-  );`)
+  );`);
 }

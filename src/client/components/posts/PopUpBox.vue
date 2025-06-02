@@ -1,33 +1,33 @@
 <script setup lang="ts">
 import { ref, type Ref } from "vue";
-import Dialog from "primevue/dialog"
-import Button from "primevue/button"
+import Dialog from "primevue/dialog";
+import Button from "primevue/button";
 import Editor from 'primevue/editor';
 import PostsManager from "./postsManager";
 import Post from "./post";
-import type { PostDto } from "@dto/postDto"
+import type { PostDto } from "@dto/postDto";
 import { InputText } from "primevue";
 const visible = ref(false);
 const setVisible = (v: boolean) => {
-  visible.value = v
-}
+  visible.value = v;
+};
 const postsManager: PostsManager = PostsManager.getPostManager();
 const body: Ref<string> = ref("");
 const title: Ref<string> = ref("");
 const saveHandler = () => {
-  visible.value = false
-  const p: PostDto = new Post(body.value, title.value, "", new Date())//placeholder
+  visible.value = false;
+  const p: PostDto = new Post(body.value, title.value, "", new Date());//placeholder
   postsManager.addPost(p);
-  body.value = ""
+  body.value = "";
   fetch("/api/post/save",
     {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(p)
-    })
-}
+    });
+};
 
-defineExpose({ setVisible })
+defineExpose({ setVisible });
 </script>
 
 <template>

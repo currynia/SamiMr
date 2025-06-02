@@ -1,4 +1,4 @@
-import Post from "./post"
+import Post from "./post";
 import { ref, type Ref } from 'vue';
 class PostsManager {
     private posts:Ref<Post[]> = ref([]);
@@ -20,7 +20,7 @@ class PostsManager {
     }
 
     setViewPost(post:Post) : void {
-      this.viewingPost = post
+      this.viewingPost = post;
     }
 
     getViewPost() : Post {
@@ -32,4 +32,4 @@ class PostsManager {
 
 }
 
-export default PostsManager
+export default PostsManager;

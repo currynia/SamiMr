@@ -2,7 +2,7 @@
 import {type Ref } from "vue";
 import Post from "./post";
 import PostsManager from "./postsManager";
-import PostComponent from "./PostComponent.vue"
+import PostComponent from "./PostComponent.vue";
 import { useRouter } from "vue-router";
 
 const postsManager : PostsManager = PostsManager.getPostManager();
@@ -11,7 +11,7 @@ const router = useRouter();
 const viewFullPost = (post:Post) => {
   postsManager.setViewPost(post);
   router.push("/viewpost");
-}
+};
 </script>
 
 <template>
