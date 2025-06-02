@@ -2,15 +2,16 @@ import type { PostDto } from "@dto/postDto"
 
 class Post implements PostDto {
   title: string
-  text: string
+  body: string
   authorName:string
   dateTime : Date
-  constructor(text: string, title: string, authorName:string, dateTime: Date) {
-    this.text = text;
+  constructor(body: string = "", title: string = "", authorName:string= "", dateTime: Date = new Date()) {
+    this.body = body;
     this.title = title;
     this.authorName = authorName;
     this.dateTime = dateTime;
   }
+
 }
 
 export default Post

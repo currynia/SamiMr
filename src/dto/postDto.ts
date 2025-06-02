@@ -1,6 +1,6 @@
 export interface PostDto {
   title: string
-  text: string
+  body: string
   authorName:string
   dateTime : Date
 }

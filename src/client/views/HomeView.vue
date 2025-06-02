@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import Toolbar from 'primevue/toolbar';
-import PostsFeedView from '@/components/posts/PostsFeed.vue';
+import PostFeed from '@/components/posts/PostsFeed.vue';
 
 import Button from "primevue/button";
 import {ref, useTemplateRef, defineAsyncComponent } from "vue";
@@ -32,5 +32,5 @@ function toggleDarkMode() {
     </Toolbar>
 
     <PopUpBox ref="popUpBox"/>
-    <PostsFeedView />
+    <PostFeed />
 </template>
