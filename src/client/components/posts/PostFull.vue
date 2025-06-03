@@ -4,6 +4,7 @@ import Post from "./post";
 import Card from "primevue/card";
 import Button from "primevue/button";
 
+defineEmits(['startComment']);
 interface Props {
   displayPost: Post
 }
@@ -19,7 +20,7 @@ const { } = defineProps<Props>();
       <div v-html="displayPost.body"></div>
     </template>
     <template #footer>
-      <Button label="Comment" severity="secondary"/>
+      <Button label="Comment" severity="secondary" @click="$emit('startComment')"/>
     </template>
   </Card>
 </template>

@@ -10,7 +10,7 @@ import Post from '@/components/posts/post';
 
 
 
-const PopUpBox = defineAsyncComponent(() => import("@/components/posts/PopUpBox.vue"));
+const PopUpBox = defineAsyncComponent(() => import("@/components/PopUpBox.vue"));
 const postsManager = PostsManager.getPostManager();
 const popUpBox = useTemplateRef<typeof PopUpBox>("popUpBox");
 
@@ -50,6 +50,7 @@ const isPopUpBoxVisible : Ref<boolean> = ref(false);
         <PopUpBox
     v-if = "isPopUpBoxVisible"
     ref="popUpBox"
-    :save-handler-callback="savePostCallback"/>
+    :save-handler-callback="savePostCallback"
+    box-type="post"/>
     <PostFeed />
 </template>

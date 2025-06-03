@@ -1,5 +1,5 @@
 export interface CommentDto {
-  commentId:number;
+  commentId?:number;
   parentPost : number;
   parentComment? : number;
   body : string;
