@@ -3,12 +3,15 @@ export class Comment implements CommentDto {
   commentId?: number;
   parentPost: number;
   parentComment?: number;
+  authorId:number;
   body: string;
+  date:Date = new Date();
 
-  constructor(parentPost: number,body: string, commentId?: number,  parentComment?: number) {
+  constructor(parentPost: number,body: string,authorId:number, commentId?: number,  parentComment?: number) {
     this.parentPost = parentPost;
     this.parentComment = parentComment;
     this.body = body;
     this.commentId = commentId;
+    this.authorId = authorId;
   }
 }

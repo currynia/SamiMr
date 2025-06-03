@@ -1,6 +1,8 @@
 import pgPromise from "pg-promise";
 import { createUserTableIfNotExists } from "./schema/usersTable";
 import { createPostsTableIfNotExists } from "./schema/postsTable";
+import { createCommentsTableIfNotExists } from "./schema/commentsTable";
+import { createInsertCommentFunction } from "./model/postModel";
 
 class DBManager {
   pgp = pgPromise();
@@ -14,19 +16,19 @@ class DBManager {
     host: this.host,
     port: this.port,
     database: this.user,
-    user:this.user,
+    user: this.user,
     password: this.password,
   });
 
   db = this.pgp({
-  host: this.host,
+    host: this.host,
     port: this.port,
     database: this.dbName,
-    user:this.user,
+    user: this.user,
     password: this.password,
-});
+  });
 
-private static dbManager : DBManager | null = null;
+  private static dbManager: DBManager | null = null;
 
   private async createDatabaseIfNotExists() {
     const dbExists = await this.adminDb.oneOrNone(
@@ -43,7 +45,7 @@ private static dbManager : DBManager | null = null;
     }
   }
 
-   async init_db() {
+  async init_db() {
     try {
       await this.createDatabaseIfNotExists();
     } catch (error) {
@@ -51,17 +53,25 @@ private static dbManager : DBManager | null = null;
     }
   }
 
-  async init_schema() {
+  async init_functions() {
     try {
-      const p1 =  createUserTableIfNotExists(this.db);
-      await Promise.all([p1]);
-      await createPostsTableIfNotExists(this.db);
+      await createInsertCommentFunction(this.db);
     } catch (error) {
       console.error('Error:', error);
     }
   }
 
-  public static getDBManager() : DBManager {
+  async init_schema() {
+    try {
+      await createUserTableIfNotExists(this.db);
+      await createPostsTableIfNotExists(this.db);
+      await createCommentsTableIfNotExists(this.db);
+    } catch (error) {
+      console.error('Error:', error);
+    }
+  }
+
+  public static getDBManager(): DBManager {
     if (DBManager.dbManager == null) {
       DBManager.dbManager = new DBManager();
     }

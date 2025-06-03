@@ -26,6 +26,7 @@ app.listen(port, () => {
 
 await dbManager.init_db();
 await dbManager.init_schema();
+await dbManager.init_functions();
 
 
 
