@@ -1,5 +1,5 @@
 export interface PostDto {
-  postId:number
+  postId?:number
   title: string
   body: string
   authorName:string

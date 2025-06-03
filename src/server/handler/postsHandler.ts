@@ -9,8 +9,8 @@ const db = DBManager.getDBManager().db;
 export const savePost = async (req : Request, res: Response) => {
   try {
     const p : PostDto = req.body;
-    await savePostController(db, p);
-    res.status(200).send();
+    const postId : number = await savePostController(db, p);
+    res.status(200).send(postId);
   } catch (e) {
     console.log(e);
     res.status(401).send();

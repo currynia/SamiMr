@@ -12,7 +12,7 @@ const popUpBox = useTemplateRef<typeof PopUpBox>("popUpBox");
 
 const displayPost : Post = postsManager.getViewPost();
 const savePostCallback =  async (s: { title: string, body: string }) => {
-  const comment : Comment = new Comment(displayPost.postId, s.body);
+  const comment : Comment = new Comment(displayPost.postId!, s.body);
   const res : Response = await fetch("/api/post/savecomment",
         {
             method: "POST",

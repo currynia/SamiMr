@@ -18,15 +18,18 @@ function toggleDarkMode() {
     document.documentElement.classList.toggle('my-app-dark');
 }
 
-const savePostCallback = (s: { title: string, body: string }) => {
+const savePostCallback = async (s: { title: string, body: string }) => {
     const p: PostDto = new Post(s.title, s.body, "", new Date());//placeholder
     postsManager.addPost(p);
-    fetch("/api/post/save",
+    const response : Response = await fetch("/api/post/save",
         {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(p)
         });
+    const postId = await response.json(); //backend returns {"id":postId}
+    p.postId = postId.id;
+    console.log(p);
 };
 const isPopUpBoxVisible : Ref<boolean> = ref(false);
 

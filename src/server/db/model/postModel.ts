@@ -1,3 +1,4 @@
+import type { PostDto } from "@root/dto/postDto";
 import type { IDatabase } from "pg-promise";
 
 
@@ -6,12 +7,12 @@ export const savePostModel = (
   authorId: number,
   title: string,
   body: string,
-  dateTime: Date) => {
+  dateTime: Date) : Promise<number> => {
 
-  return db.none(
+  return db.one(
     `
     INSERT INTO posts (author_id, title, body, created_at)
-    VALUES ($1, $2, $3, $4)
+    VALUES ($1, $2, $3, $4) RETURNING id
     `,
     [authorId, title, body, dateTime]);
 };

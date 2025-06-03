@@ -1,7 +1,7 @@
 import type { PostDto } from "@dto/postDto";
 
 class Post implements PostDto {
-  postId : number;
+  postId?: number;
   title: string;
   body: string;
   authorName:string;
@@ -11,7 +11,7 @@ class Post implements PostDto {
     body: string = "",
     authorName:string= "",
     dateTime: Date = new Date(),
-  postId : number = -1, ) {
+  postId? : number) {
     this.body = body;
     this.title = title;
     this.authorName = authorName;

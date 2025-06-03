@@ -3,7 +3,7 @@ import type { IDatabase } from "pg-promise";
 import { savePostModel } from "../model/postModel";
 import { getUserIdFromUsername } from "../model/userModel";
 
-export const savePostController = async (db: IDatabase<object>, post: PostDto) => {
+export const savePostController = (db: IDatabase<object>, post: PostDto) : Promise<number> => {
   // const authorId : number = await getUserIdFromUsername(db, post.authorName);
   // if (!Number.isInteger(authorId)) {
   //   throw new TypeError(`Expected integer for authorID got ${authorId} instead`)
@@ -11,5 +11,5 @@ export const savePostController = async (db: IDatabase<object>, post: PostDto) =
   const body: string = post.body;
   const title: string = post.title;
   const dateTime: Date = post.dateTime;
-  await savePostModel(db, 1, body, title, dateTime);
+  return savePostModel(db, 1, body, title, dateTime);
 };
