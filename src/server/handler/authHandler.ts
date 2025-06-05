@@ -10,7 +10,6 @@ export const login = (req: Request, res: Response) => {
 };
 
 export const register = async (req: Request, res: Response) => {
-  console.log('Register request:', req.body);
   try {
     await registerController(db, req.body.username, req.body.password);
     res.status(200).send();

@@ -41,7 +41,7 @@ const isPopUpBoxVisible: Ref<boolean> = ref(false);
     "
   />
   <li v-for="comments in postComment.comments.value.values()" :key="comments.commentId">
-    <div>{{ comments.body }}</div>
+    <div v-html="comments.body"></div>
   </li>
   <PopUpBox
     v-if="isPopUpBoxVisible"

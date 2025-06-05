@@ -10,7 +10,7 @@
     "build-only": "vite build",
     "type-check": "vue-tsc --build",
     "lint": "eslint . --fix",
-    "psql":"pg_ctl start -D src/server/db/psql",
+    "psql": "pg_ctl start -D src/server/db/psql",
     "start": "npx tsc && npx tsx watch --tsconfig ./tsconfig.node.json ./src/server/server.ts"
   },
   "dependencies": {
@@ -27,6 +27,7 @@
   },
   "devDependencies": {
     "@tsconfig/node22": "^22.0.1",
+    "@types/bcrypt": "^5.0.2",
     "@types/express": "^5.0.2",
     "@types/node": "^22.15.21",
     "@vitejs/plugin-vue": "^5.2.3",
