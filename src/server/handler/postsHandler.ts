@@ -27,5 +27,15 @@ export const saveComment = async (req: Request, res: Response) => {
     console.log(e);
     res.status(401).send();
   }
-
 };
+
+export const getPosts = async (req: Request, res: Response) => {
+  try {
+
+    res.status(200).send();
+  } catch (e) {
+    console.log(e);
+    res.status(401).send();
+  }
+};
+

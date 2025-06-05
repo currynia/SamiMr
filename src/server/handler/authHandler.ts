@@ -3,6 +3,7 @@ import DBManager from '../db/dbManager';
 import { type Request, type Response } from 'express';
 
 const db = DBManager.getDBManager().db;
+
 export const login = (req: Request, res: Response) => {
   console.log('Login request:', req.body);
 

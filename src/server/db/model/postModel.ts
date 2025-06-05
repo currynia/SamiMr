@@ -48,3 +48,7 @@ export const saveCommentModel = (
     [parentPost, parentComment, body, authorId, date]
   );
 };
+
+export const getPostModel = (db: IDatabase<object>, limit: number): Promise<PostDto> => {
+  return db.one<PostDto>(`SELECT * FROM Posts LIMIT $1`, [limit]);
+};
