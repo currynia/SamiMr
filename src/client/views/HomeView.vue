@@ -17,7 +17,7 @@ function toggleDarkMode() {
 }
 
 const savePostCallback = async (s: { title: string; body: string }) => {
-  const p: PostDto = new Post(s.title, s.body, "", new Date()); //placeholder
+  const p: PostDto = new Post(s.title, s.body, "", new Date()); //placeholder username
   postsManager.addPost(p);
   const response: Response = await fetch("/api/post/save", {
     method: "POST",

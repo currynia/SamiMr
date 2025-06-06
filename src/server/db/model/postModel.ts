@@ -49,6 +49,19 @@ export const saveCommentModel = (
   );
 };
 
-export const getPostModel = (db: IDatabase<object>, limit: number): Promise<PostDto> => {
-  return db.one<PostDto>(`SELECT * FROM Posts LIMIT $1`, [limit]);
+
+export function getPostFromStart(db: IDatabase<object>, limit: number): Promise<Array<PostDto>> {
+  return db.manyOrNone<PostDto>(`
+    SELECT p.id as "postId",
+    p.title,
+    p.body,
+    u.username as "authorName",
+    p.created_at as "dateTime" FROM Posts p
+    INNER JOIN Users u
+    ON u.id = p.author_id
+    LIMIT $1;`, [limit]);
+};
+
+export function getPostFromId(db: IDatabase<object>, postId: number, limit: number): Promise<Array<PostDto>> {
+  return db.manyOrNone<PostDto>(`SELECT * FROM Posts LIMIT $1`, [limit]);
 };

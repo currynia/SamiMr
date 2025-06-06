@@ -1,6 +1,6 @@
 import type { PostDto } from "@root/dto/postDto";
 import type { IDatabase } from "pg-promise";
-import { getPostModel, saveCommentModel, savePostModel } from "../model/postModel";
+import { getPostFromId, getPostFromStart, saveCommentModel, savePostModel } from "../model/postModel";
 import type { CommentDto } from "@root/dto/commentDto";
 
 export const savePostController = (db: IDatabase<object>, post: PostDto): Promise<number> => {
@@ -27,12 +27,14 @@ export const saveCommentController = (db: IDatabase<object>, comment: CommentDto
   return saveCommentModel(db, parentPost, body, 1, dateTime, parentComment);
 };
 
-export const getPostController = (db: IDatabase<object>, postId?: number, limit?: number): Promise<PostDto> => {
-  const defaultLoad = 5;
+export const getPostController = (db: IDatabase<object>, postId?: number, limit?: number): Promise<Array<PostDto>> => {
   if (limit == null) {
-    return getPostModel(db, defaultLoad);
+    limit = 5; //the default limit
+  } if (postId == null) {
+    return getPostFromStart(db, limit);
   }
-  return getPostModel(db, limit);
+  return getPostFromId(db, limit, postId);
+
 };
 
 

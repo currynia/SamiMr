@@ -1,8 +1,12 @@
 export interface PostDto {
-  postId?:number
+  postId?: number
   title: string
   body: string
-  authorName:string
-  dateTime : Date
+  authorName: string
+  dateTime: Date
 }
 
+export interface LoadFeedDto {
+  postId?: number,
+  limit?: number
+}
