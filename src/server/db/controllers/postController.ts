@@ -27,13 +27,13 @@ export const saveCommentController = (db: IDatabase<object>, comment: CommentDto
   return saveCommentModel(db, parentPost, body, 1, dateTime, parentComment);
 };
 
-export const getPostController = (db: IDatabase<object>, postId?: number, limit?: number): Promise<Array<PostDto>> => {
+export const getPostController = (db: IDatabase<object>, postId?: number, dateTime?: Date, limit?: number): Promise<Array<PostDto>> => {
   if (limit == null) {
     limit = 5; //the default limit
-  } if (postId == null) {
+  } if (postId == null || dateTime == null) {
     return getPostFromStart(db, limit);
   }
-  return getPostFromId(db, limit, postId);
+  return getPostFromId(db, postId, dateTime, limit,);
 
 };
 

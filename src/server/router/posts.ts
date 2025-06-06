@@ -5,5 +5,5 @@ const postRouter = express.Router();
 
 postRouter.post('/save', savePost);
 postRouter.post('/savecomment', saveComment);
-postRouter.get('/getposts', getPosts);
+postRouter.post('/getposts', getPosts);
 export default postRouter;

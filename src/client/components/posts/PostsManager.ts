@@ -7,7 +7,7 @@ class PostsManager {
   private viewingPost?: Post;
   private emptyPost: Post = new Post();
 
-  addPost(...post: PostDto[]): void {
+  addPost(...post: Array<PostDto>): void {
     for (const p of post) {
       this.posts.value.push(p);
     }
@@ -33,6 +33,9 @@ class PostsManager {
     return this.emptyPost;
   }
 
+  getLastRetrievedPost(): PostDto {
+    return this.posts.value[this.posts.value.length - 1];
+  }
 }
 
 export default PostsManager;

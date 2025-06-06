@@ -5,7 +5,7 @@ import PostFeed from "@/components/posts/PostsFeed.vue";
 import Button from "primevue/button";
 import { ref, useTemplateRef, defineAsyncComponent, type Ref } from "vue";
 import PostsManager from "@/components/posts/postsManager";
-import type { PostDto } from "@dto/postDto";
+import type { LoadFeedDto, PostDto } from "@dto/postDto";
 import Post from "@/components/posts/post";
 
 const PopUpBox = defineAsyncComponent(() => import("@/components/PopUpBox.vue"));
@@ -29,32 +29,48 @@ const savePostCallback = async (s: { title: string; body: string }) => {
   console.log(p.postId);
 };
 const isPopUpBoxVisible: Ref<boolean> = ref(false);
+
+const loadMorePosts = async () => {
+  const lastRetrievedPost = postsManager.getLastRetrievedPost();
+  const postId = lastRetrievedPost.postId;
+  const dateTime = lastRetrievedPost.dateTime;
+  const body: LoadFeedDto = { postId, dateTime };
+  const res: Response = await fetch("/api/post/getposts", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(body),
+  });
+  const posts: Array<PostDto> = await res.json();
+  postsManager.addPost(...posts);
+};
 </script>
 <template>
-  <Toolbar style="width: 100vw; margin: 0">
-    <template #start>
-      <Button label="Toggle Dark Mode" @click="toggleDarkMode()" />
-    </template>
-    <template #end>
-      <div style="display: block">
-        <Button
-          @click="
-            isPopUpBoxVisible = true;
-            popUpBox?.setVisible(true);
-          "
-          label="Create post"
-        />
-        <Button @click="$router.push('/auth/login')" label="Login" />
-        <Button @click="$router.push('/auth/register')" label="Sign up" />
-      </div>
-    </template>
-  </Toolbar>
+  <div style="display: flex; flex-direction: column; max-height: 100%">
+    <Toolbar style="width: 100vw; margin: 0">
+      <template #start>
+        <Button label="Toggle Dark Mode" @click="toggleDarkMode()" />
+      </template>
+      <template #end>
+        <div style="display: block">
+          <Button
+            @click="
+              isPopUpBoxVisible = true;
+              popUpBox?.setVisible(true);
+            "
+            label="Create post"
+          />
+          <Button @click="$router.push('/auth/login')" label="Login" />
+          <Button @click="$router.push('/auth/register')" label="Sign up" />
+        </div>
+      </template>
+    </Toolbar>
 
-  <PopUpBox
-    v-if="isPopUpBoxVisible"
-    ref="popUpBox"
-    :save-handler-callback="savePostCallback"
-    box-type="post"
-  />
-  <PostFeed />
+    <PopUpBox
+      v-if="isPopUpBoxVisible"
+      ref="popUpBox"
+      :save-handler-callback="savePostCallback"
+      box-type="post"
+    />
+    <PostFeed @load-more-posts="loadMorePosts" />
+  </div>
 </template>

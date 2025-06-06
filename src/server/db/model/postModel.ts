@@ -59,9 +59,19 @@ export function getPostFromStart(db: IDatabase<object>, limit: number): Promise<
     p.created_at as "dateTime" FROM Posts p
     INNER JOIN Users u
     ON u.id = p.author_id
+    ORDER BY p.created_at DESC, p.id
     LIMIT $1;`, [limit]);
 };
 
-export function getPostFromId(db: IDatabase<object>, postId: number, limit: number): Promise<Array<PostDto>> {
-  return db.manyOrNone<PostDto>(`SELECT * FROM Posts LIMIT $1`, [limit]);
+export function getPostFromId(db: IDatabase<object>, postId: number, dateTime: Date, limit: number): Promise<Array<PostDto>> {
+  return db.manyOrNone<PostDto>(`SELECT p.id as "postId",
+    p.title,
+    p.body,
+    u.username as "authorName",
+    p.created_at as "dateTime" FROM Posts p
+    INNER JOIN Users u
+    ON u.id = p.author_id
+WHERE p.created_at > $(dateTime) AND p.id > $(postId)
+    ORDER BY p.created_at DESC, p.id
+    LIMIT $(limit);`, { dateTime, postId, limit });
 };

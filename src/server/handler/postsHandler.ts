@@ -32,7 +32,7 @@ export const saveComment = async (req: Request, res: Response) => {
 export const getPosts = async (req: Request, res: Response) => {
   try {
     const body: LoadFeedDto = req.body;
-    const feedPost: Array<PostDto> = await getPostController(db, body?.postId, body?.limit);
+    const feedPost: Array<PostDto> = await getPostController(db, body?.postId, body?.dateTime, body?.limit);
     res.status(200).send(feedPost);
   } catch (e) {
     console.log(e);

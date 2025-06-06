@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { type Ref } from "vue";
+import { onBeforeUnmount, onMounted, type Ref } from "vue";
 import Post from "./post";
 import PostsManager from "./postsManager";
 import PostComponent from "./PostComponent.vue";
@@ -12,14 +12,31 @@ const viewFullPost = (post: Post) => {
   postsManager.setViewPost(post);
   router.push("/viewpost");
 };
+
+const emit = defineEmits(["loadMorePosts"]); //to load more post when scroll to end
+
+const onScroll = (e: Event) => {
+  const { scrollTop, offsetHeight, scrollHeight } = e.target as HTMLElement;
+  if (scrollTop + offsetHeight >= scrollHeight) {
+    emit("loadMorePosts");
+  }
+};
 </script>
 
 <template>
-  <div class="wrapper" style="display: flex; flex-direction: column; width: 100%; height: 100%">
-    <div style="display: flex; flex-direction: column; gap: 1rem; height: 100%; padding: 2rem">
-      <li v-for="post in posts" :key="post.body" style="list-style-type: none">
-        <PostComponent :post="post" @click="viewFullPost(post)" />
-      </li>
-    </div>
+  <div
+    @scroll="onScroll"
+    style="
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      height: 100%;
+      padding: 2rem;
+      overflow-y: scroll;
+    "
+  >
+    <li v-for="post in posts" :key="post.body" style="list-style-type: none">
+      <PostComponent :post="post" @click="viewFullPost(post)" />
+    </li>
   </div>
 </template>

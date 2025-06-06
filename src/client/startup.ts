@@ -7,7 +7,7 @@ export const setUpOnStart = () => {
 const loadFeedOnStartUp = async () => {
   const postsManager = PostsManager.getPostManager();
   const res: Response = await fetch("/api/post/getposts", {
-    method: "GET",
+    method: "POST",
   });
   const posts: Array<PostDto> = await res.json();
   postsManager.addPost(...posts);

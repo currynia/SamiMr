@@ -8,5 +8,6 @@ export interface PostDto {
 
 export interface LoadFeedDto {
   postId?: number,
-  limit?: number
+  limit?: number,
+  dateTime?: Date
 }
