@@ -1,7 +1,7 @@
 import type { IDatabase } from "pg-promise";
 
-export async function createCommentsTableIfNotExists(db: IDatabase<unknown>) {
-  db.none(` CREATE TABLE IF NOT EXISTS Comments (
+export function createCommentsTableIfNotExists(db: IDatabase<unknown>) {
+  return db.none(` CREATE TABLE IF NOT EXISTS Comments (
     commentId INT,
     parentPost INT NOT NULL,
     parentComment INT,

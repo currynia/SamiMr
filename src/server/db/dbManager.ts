@@ -10,7 +10,7 @@ class DBManager {
   user = process.env.PSQL_USER;
   port = Number(process.env.PSQL_PORT);
   password = process.env.PSQL_PASS;
-  dbName = 'proext';
+  dbName = 'samimr';
 
   adminDb = this.pgp({
     host: this.host,
@@ -38,7 +38,7 @@ class DBManager {
 
     if (!dbExists) {
 
-      await this.adminDb.none(`CREATE DATABASE $1:name`, [this.dbName]);
+      await this.adminDb.none(`CREATE DATABASE $1:name WITH ENCODING 'UTF8' TEMPLATE template0`, [this.dbName]);
       console.log(`Database ${this.dbName} created`);
     } else {
       console.log(`Database ${this.dbName} already exists`);
