@@ -7,7 +7,7 @@ export function createCommentsTableIfNotExists(db: IDatabase<unknown>) {
     parentComment INT,
     body TEXT NOT NULL,
     authorId INT NOT NULL,
-    date DATE NOT NULL,
+    date TIMESTAMPTZ NOT NULL,
     FOREIGN KEY (parentPost) REFERENCES Posts(id),
     FOREIGN KEY (parentPost,parentComment) REFERENCES Comments(parentPost,commentId),
     FOREIGN KEY (authorId) REFERENCES Users(id),

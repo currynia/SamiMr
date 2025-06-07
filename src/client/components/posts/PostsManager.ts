@@ -13,6 +13,13 @@ class PostsManager {
     }
   }
 
+  addPostFront(...post: Array<PostDto>): void {
+    for (const p of post) {
+      this.posts.value.unshift(p);
+    }
+  }
+
+
   getPosts(): Ref<Post[]> {
     return this.posts;
   }
@@ -33,8 +40,14 @@ class PostsManager {
     return this.emptyPost;
   }
 
-  getLastRetrievedPost(): PostDto {
+  getLastRetrievedPost(): PostDto | undefined {
     return this.posts.value[this.posts.value.length - 1];
+  }
+
+  getNewestPost(): PostDto | undefined {
+    console.log("ASDASDASD");
+    console.log(this.posts.value.length);
+    return this.posts.value.slice(0, 1)[0];
   }
 }
 

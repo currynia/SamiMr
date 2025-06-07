@@ -2,7 +2,7 @@ import pgPromise from "pg-promise";
 import { createUserTableIfNotExists } from "./schema/usersTable";
 import { createPostsTableIfNotExists } from "./schema/postsTable";
 import { createCommentsTableIfNotExists } from "./schema/commentsTable";
-import { createInsertCommentFunction } from "./model/postModel";
+import { createInsertCommentFunction, createPollTriggerAfterInsertOnPost } from "./model/postModel";
 
 class DBManager {
   pgp = pgPromise();
@@ -56,6 +56,7 @@ class DBManager {
   async init_functions() {
     try {
       await createInsertCommentFunction(this.db);
+      await createPollTriggerAfterInsertOnPost(this.db);
     } catch (error) {
       console.error('Error:', error);
     }

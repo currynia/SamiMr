@@ -50,7 +50,7 @@ export const saveCommentModel = (
 };
 
 
-export function getPostFromStart(db: IDatabase<object>, limit: number): Promise<Array<PostDto>> {
+export function getPostsByTime(db: IDatabase<object>, limit: number): Promise<Array<PostDto>> {
   return db.manyOrNone<PostDto>(`
     SELECT p.id as "postId",
     p.title,
@@ -63,7 +63,35 @@ export function getPostFromStart(db: IDatabase<object>, limit: number): Promise<
     LIMIT $1;`, [limit]);
 };
 
-export function getPostFromId(db: IDatabase<object>, postId: number, dateTime: Date, limit: number): Promise<Array<PostDto>> {
+export function getOldPostsAfterId(db: IDatabase<object>, postId: number, dateTime: Date, limit: number): Promise<Array<PostDto>> {
+  return db.manyOrNone<PostDto>(`SELECT p.id as "postId",
+    p.title,
+    p.body,
+    u.username as "authorName",
+    p.created_at as "dateTime" FROM Posts p
+    INNER JOIN Users u
+    ON u.id = p.author_id
+WHERE p.created_at < $(dateTime) AND p.id < $(postId)
+    ORDER BY p.created_at DESC, p.id
+    LIMIT $(limit);`, { dateTime, postId, limit });
+};
+
+export const createPollTriggerAfterInsertOnPost = (db: IDatabase<object>) => {
+  return db.none(`
+CREATE OR REPLACE FUNCTION notify_insert() RETURNS TRIGGER AS $$
+BEGIN
+PERFORM pg_notify($1:: text, NEW.id::text);
+RETURN NULL;
+END;
+$$ LANGUAGE plpgsql;
+
+CREATE OR REPLACE TRIGGER check_insert
+AFTER INSERT ON POSTS FOR EACH ROW
+EXECUTE FUNCTION notify_insert();
+`, ['postchannel']);
+};
+
+export function getNewPostsAfterId(db: IDatabase<object>, postId: number, dateTime: Date, limit: number): Promise<Array<PostDto>> {
   return db.manyOrNone<PostDto>(`SELECT p.id as "postId",
     p.title,
     p.body,

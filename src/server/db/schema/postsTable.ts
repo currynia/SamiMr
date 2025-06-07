@@ -7,7 +7,7 @@ export function createPostsTableIfNotExists(db: IDatabase<unknown>) {
     author_id INT NOT NULL,
     title TEXT NOT NULL,
     body TEXT NOT NULL,
-    created_at DATE NOT NULL,
+    created_at TIMESTAMPTZ NOT NULL,
     FOREIGN KEY (author_id) REFERENCES Users(id)
   );`);
 }

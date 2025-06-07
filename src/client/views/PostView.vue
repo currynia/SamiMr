@@ -13,6 +13,7 @@ const postsManager = PostsManager.getPostManager();
 const popUpBox = useTemplateRef<typeof PopUpBox>("popUpBox");
 const displayPost: Post = postsManager.getViewPost();
 const postComment = postCommentManger.function().getPostComment(displayPost.postId!);
+const isPopUpBoxVisible: Ref<boolean> = ref(false);
 
 const savePostCallback = async (s: { title: string; body: string }) => {
   const comment: Comment = new Comment(displayPost.postId!, s.body, 1);
@@ -24,12 +25,7 @@ const savePostCallback = async (s: { title: string; body: string }) => {
   const data = await res.json();
   comment.commentId = data.insertcomment.commentid; //to fix
   postComment.addComment(comment);
-  for (const g of postComment.comments.value.values()) {
-    console.log(g);
-  }
 };
-
-const isPopUpBoxVisible: Ref<boolean> = ref(false);
 </script>
 
 <template>

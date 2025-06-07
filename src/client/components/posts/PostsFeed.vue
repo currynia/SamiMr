@@ -17,7 +17,7 @@ const emit = defineEmits(["loadMorePosts"]); //to load more post when scroll to 
 
 const onScroll = (e: Event) => {
   const { scrollTop, offsetHeight, scrollHeight } = e.target as HTMLElement;
-  if (scrollTop + offsetHeight >= scrollHeight) {
+  if (scrollTop + offsetHeight + 100 >= scrollHeight) {
     emit("loadMorePosts");
   }
 };
@@ -32,7 +32,8 @@ const onScroll = (e: Event) => {
       gap: 1rem;
       height: 100%;
       padding: 2rem;
-      overflow-y: scroll;
+      overflow-y: auto;
+      overflow: scroll;
     "
   >
     <li v-for="post in posts" :key="post.body" style="list-style-type: none">

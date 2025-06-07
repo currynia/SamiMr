@@ -1,10 +1,10 @@
 <script setup lang="ts">
-import type Post from './post';
+import type Post from "./post";
 import Card from "primevue/card";
 interface Props {
-  post: Post,
+  post: Post;
 }
-const { } = defineProps<Props>();
+const {} = defineProps<Props>();
 </script>
 
 <template>
@@ -13,7 +13,6 @@ const { } = defineProps<Props>();
       {{ post.title }}
     </template>
     <template #content>
-
       <div v-html="post.body" class="postContent"></div>
     </template>
   </Card>

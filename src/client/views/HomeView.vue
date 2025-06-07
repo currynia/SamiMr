@@ -1,48 +1,44 @@
 <script setup lang="ts">
 import Toolbar from "primevue/toolbar";
 import PostFeed from "@/components/posts/PostsFeed.vue";
-
 import Button from "primevue/button";
 import { ref, useTemplateRef, defineAsyncComponent, type Ref } from "vue";
 import PostsManager from "@/components/posts/postsManager";
 import type { LoadFeedDto, PostDto } from "@dto/postDto";
 import Post from "@/components/posts/post";
+import { postJsonFetch } from "@/util";
+import { setUpOnStart } from "@/startup";
 
 const PopUpBox = defineAsyncComponent(() => import("@/components/PopUpBox.vue"));
 const postsManager = PostsManager.getPostManager();
 const popUpBox = useTemplateRef<typeof PopUpBox>("popUpBox");
+const isPopUpBoxVisible: Ref<boolean> = ref(false);
+
+const savePostCallback = async (s: { title: string; body: string }) => {
+  const p: PostDto = new Post(s.title, s.body, "", new Date()); //placeholder username
+  postJsonFetch("/api/post/save", p);
+  // // postsManager.addPostFront(p);
+  // const response: Response = await postJsonFetch("/api/post/save", p);
+  // // const postId: PostDto = await response.json();
+  // // p.postId = postId.postId;
+  // // console.log(p.postId);
+};
+
+const loadMorePosts = async () => {
+  const lastRetrievedPost = postsManager.getLastRetrievedPost();
+  const postId = lastRetrievedPost?.postId;
+  const dateTime = lastRetrievedPost?.dateTime;
+  const body: LoadFeedDto = { postId, dateTime };
+  const res: Response = await postJsonFetch("/api/post/getposts", body);
+  const posts: Array<PostDto> = await res.json();
+  postsManager.addPost(...posts);
+};
 
 function toggleDarkMode() {
   document.documentElement.classList.toggle("my-app-dark");
 }
 
-const savePostCallback = async (s: { title: string; body: string }) => {
-  const p: PostDto = new Post(s.title, s.body, "", new Date()); //placeholder username
-  postsManager.addPost(p);
-  const response: Response = await fetch("/api/post/save", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(p),
-  });
-  const postId: PostDto = await response.json();
-  p.postId = postId.postId;
-  console.log(p.postId);
-};
-const isPopUpBoxVisible: Ref<boolean> = ref(false);
-
-const loadMorePosts = async () => {
-  const lastRetrievedPost = postsManager.getLastRetrievedPost();
-  const postId = lastRetrievedPost.postId;
-  const dateTime = lastRetrievedPost.dateTime;
-  const body: LoadFeedDto = { postId, dateTime };
-  const res: Response = await fetch("/api/post/getposts", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(body),
-  });
-  const posts: Array<PostDto> = await res.json();
-  postsManager.addPost(...posts);
-};
+setUpOnStart();
 </script>
 <template>
   <div style="display: flex; flex-direction: column; max-height: 100%">
