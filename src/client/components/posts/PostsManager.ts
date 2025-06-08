@@ -45,9 +45,8 @@ class PostsManager {
   }
 
   getNewestPost(): PostDto | undefined {
-    console.log("ASDASDASD");
-    console.log(this.posts.value.length);
-    return this.posts.value.slice(0, 1)[0];
+
+    return this.posts.value[0];
   }
 }
 

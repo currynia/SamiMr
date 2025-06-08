@@ -33,7 +33,6 @@ const onScroll = (e: Event) => {
       height: 100%;
       padding: 2rem;
       overflow-y: auto;
-      overflow: scroll;
     "
   >
     <li v-for="post in posts" :key="post.body" style="list-style-type: none">

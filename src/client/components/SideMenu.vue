@@ -1,0 +1,117 @@
+<template>
+  <div class="card flex justify-content-center h-f">
+    <Menu :model="items" class="w-full md:w-15rem">
+      <template #start>
+        <span class="inline-flex align-items-center gap-1 px-2 py-2">
+          <svg
+            width="35"
+            height="40"
+            viewBox="0 0 1024 1024"
+            class="icon"
+            version="1.1"
+            xmlns="http://www.w3.org/2000/svg"
+            fill="#000000"
+          >
+            <g id="SVGRepo_bgCarrier" stroke-width="0" />
+
+            <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round" />
+
+            <g id="SVGRepo_iconCarrier">
+              <path
+                d="M705.469942 995.368085H315.053325V387.757939c0-20.451368 92.23567-86.918314 208.603955-38.448572 127.821051 53.173557 182.017176 17.179149 182.017176 38.448572v607.610146z"
+                fill="#4dd2fe"
+              />
+
+              <path
+                d="M736.965049 340.924306a175.881766 175.881766 0 0 0-173.836629-175.677252V122.708209h10.225684a40.902736 40.902736 0 0 0 40.902736-40.902737V40.902736a40.902736 40.902736 0 0 0-40.902736-40.902736H450.645896a40.902736 40.902736 0 0 0-40.902736 40.902736v40.902736a40.902736 40.902736 0 0 0 40.902736 40.902737h10.225684v42.538845A175.881766 175.881766 0 0 0 287.034951 340.924306v127.412023a64.421809 64.421809 0 0 0 16.974636 43.152387A61.354104 61.354104 0 0 0 287.034951 553.618534v81.805472a61.354104 61.354104 0 0 0 15.952067 40.902737 61.354104 61.354104 0 0 0-15.952067 40.902736v81.805472a61.354104 61.354104 0 0 0 15.952067 40.902736 61.354104 61.354104 0 0 0-15.952067 40.902736v81.805473a61.354104 61.354104 0 0 0 61.354104 61.354104h327.22189a61.354104 61.354104 0 0 0 61.354104-61.354104v-81.805473a61.354104 61.354104 0 0 0-15.952067-40.902736 61.354104 61.354104 0 0 0 15.952067-40.902736v-81.805472a61.354104 61.354104 0 0 0-15.952067-40.902736 61.354104 61.354104 0 0 0 15.952067-40.902737v-81.805472a61.354104 61.354104 0 0 0-16.974636-42.129818A64.421809 64.421809 0 0 0 736.965049 468.336329v-127.412023zM450.645896 40.902736h122.708208v40.902736H450.645896V40.902736z m71.579788 81.805473v42.334331h-20.451368V122.708209h20.451368zM327.937687 340.924306a134.979029 134.979029 0 0 1 134.97903-134.979029h98.37108a134.979029 134.979029 0 0 1 134.979029 134.979029v127.412023a23.928101 23.928101 0 0 1-23.9281 23.928101H351.865788A23.928101 23.928101 0 0 1 327.937687 468.336329v-127.412023z m368.124626 294.4997a20.451368 20.451368 0 0 1-20.451368 20.451368h-89.781506a20.451368 20.451368 0 0 0 0 40.902737h88.963451a20.451368 20.451368 0 0 1 20.451368 20.451368v81.805472a20.451368 20.451368 0 0 1-20.451368 20.451368h-7.157979a20.451368 20.451368 0 0 0 0 40.902736h7.157979a20.451368 20.451368 0 0 1 20.451368 20.451368v81.805473a20.451368 20.451368 0 0 1-20.451368 20.451368h-327.221889a20.451368 20.451368 0 0 1-20.451368-20.451368v-81.805473a20.451368 20.451368 0 0 1 20.451368-20.451368h4.499301a20.451368 20.451368 0 0 0 0-40.902736h-4.499301a20.451368 20.451368 0 0 1-20.451368-20.451368v-81.805472a20.451368 20.451368 0 0 1 20.451368-20.451368h4.499301a20.451368 20.451368 0 0 0 0-40.902737h-4.499301a20.451368 20.451368 0 0 1-20.451368-20.451368v-81.805472a20.451368 20.451368 0 0 1 20.451368-20.451368h327.221889a20.451368 20.451368 0 0 1 20.451368 20.451368v81.805472z"
+                fill="#27284D"
+              />
+            </g>
+          </svg>
+
+          <span class="text-xl font-semibold">Sami<span class="text-dark">Mr</span></span>
+        </span>
+      </template>
+      <template #submenuheader="{ item }">
+        <span class="text-primary font-bold">{{ item.label }}</span>
+      </template>
+      <template #item="{ item, props }">
+        <a v-ripple class="flex align-items-center" v-bind="props.action">
+          <span :class="item.icon" />
+          <span class="ml-2">{{ item.label }}</span>
+          <Badge v-if="item.badge" class="ml-auto" :value="item.badge" />
+          <span
+            v-if="item.shortcut"
+            class="ml-auto border-1 surface-border border-round surface-100 text-xs p-1"
+            >{{ item.shortcut }}</span
+          >
+        </a>
+      </template>
+      <template #end>
+        <button
+          v-ripple
+          class="relative overflow-hidden w-full p-link flex align-items-center p-2 pl-3 text-color hover:surface-200 border-noround"
+        >
+          <Avatar
+            image="https://primefaces.org/cdn/primevue/images/avatar/amyelsner.png"
+            class="mr-2"
+            shape="circle"
+          />
+          <span class="inline-flex flex-column">
+            <span class="font-bold">Amy Elsner</span>
+            <span class="text-sm">Admin</span>
+          </span>
+        </button>
+      </template>
+    </Menu>
+  </div>
+</template>
+
+<script setup lang="ts">
+import { ref } from "vue";
+import Menu from "primevue/menu";
+
+const items = ref([
+  {
+    separator: true,
+  },
+  {
+    label: "Documents",
+    items: [
+      {
+        label: "New",
+        icon: "pi pi-plus",
+        shortcut: "⌘+N",
+      },
+      {
+        label: "Search",
+        icon: "pi pi-search",
+        shortcut: "⌘+S",
+      },
+    ],
+  },
+  {
+    label: "Profile",
+    items: [
+      {
+        label: "Settings",
+        icon: "pi pi-cog",
+        shortcut: "⌘+O",
+      },
+      {
+        label: "Messages",
+        icon: "pi pi-inbox",
+        badge: 2,
+      },
+      {
+        label: "Logout",
+        icon: "pi pi-sign-out",
+        shortcut: "⌘+Q",
+      },
+    ],
+  },
+  {
+    separator: true,
+  },
+]);
+</script>

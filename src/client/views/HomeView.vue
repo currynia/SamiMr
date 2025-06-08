@@ -8,7 +8,7 @@ import type { LoadFeedDto, PostDto } from "@dto/postDto";
 import Post from "@/components/posts/post";
 import { postJsonFetch } from "@/util";
 import { setUpOnStart } from "@/startup";
-
+import SideMenu from "@/components/SideMenu.vue";
 const PopUpBox = defineAsyncComponent(() => import("@/components/PopUpBox.vue"));
 const postsManager = PostsManager.getPostManager();
 const popUpBox = useTemplateRef<typeof PopUpBox>("popUpBox");
@@ -17,11 +17,6 @@ const isPopUpBoxVisible: Ref<boolean> = ref(false);
 const savePostCallback = async (s: { title: string; body: string }) => {
   const p: PostDto = new Post(s.title, s.body, "", new Date()); //placeholder username
   postJsonFetch("/api/post/save", p);
-  // // postsManager.addPostFront(p);
-  // const response: Response = await postJsonFetch("/api/post/save", p);
-  // // const postId: PostDto = await response.json();
-  // // p.postId = postId.postId;
-  // // console.log(p.postId);
 };
 
 const loadMorePosts = async () => {
@@ -40,8 +35,9 @@ function toggleDarkMode() {
 
 setUpOnStart();
 </script>
+
 <template>
-  <div style="display: flex; flex-direction: column; max-height: 100%">
+  <div class="flex flex-col h-full max-h-full">
     <Toolbar style="width: 100vw; margin: 0">
       <template #start>
         <Button label="Toggle Dark Mode" @click="toggleDarkMode()" />
@@ -60,13 +56,15 @@ setUpOnStart();
         </div>
       </template>
     </Toolbar>
-
+    <div class="grow inline-block">
+      <SideMenu class="float-left" />
+      <PostFeed class="float-right" @load-more-posts="loadMorePosts" />
+    </div>
     <PopUpBox
       v-if="isPopUpBoxVisible"
       ref="popUpBox"
       :save-handler-callback="savePostCallback"
       box-type="post"
     />
-    <PostFeed @load-more-posts="loadMorePosts" />
   </div>
 </template>
