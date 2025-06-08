@@ -22,6 +22,7 @@ const onSaveClick = (s: { title: string; body: string }) => {
   isVisible.value = false;
   props.saveHandlerCallback(s);
   body.value = "";
+  title.value = "";
 };
 const setVisible = (visible: boolean) => {
   isVisible.value = visible;
@@ -51,7 +52,16 @@ defineExpose({ setVisible });
     />
 
     <div class="dialogbox-button-wrapper" style="margin-top: auto">
-      <Button type="button" label="Cancel" severity="secondary" @click="isVisible = false"></Button>
+      <Button
+        type="button"
+        label="Cancel"
+        severity="secondary"
+        @click="
+          isVisible = false;
+          title = '';
+          body = '';
+        "
+      ></Button>
       <Button type="button" label="Save" @click="onSaveClick({ title, body })"></Button>
     </div>
   </Dialog>
