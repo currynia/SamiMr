@@ -1,14 +1,13 @@
 <script setup lang="ts">
 import ToolBar from "@/components/ToolBar.vue";
 import PostFeed from "@/components/posts/PostsFeed.vue";
-import Button from "primevue/button";
 import { ref, useTemplateRef, defineAsyncComponent, type Ref } from "vue";
-import PostsManager from "@/components/posts/postsManager";
-import type { LoadFeedDto, PostDto } from "@dto/postDto";
+import type { PostDto } from "@dto/postDto";
 import Post from "@/components/posts/post";
 import { postJsonFetch } from "@/util";
 import { setUpOnStart } from "@/startup";
 import SideMenu from "@/components/SideMenu.vue";
+
 const PopUpBox = defineAsyncComponent(() => import("@/components/PopUpBox.vue"));
 const popUpBox = useTemplateRef<typeof PopUpBox>("popUpBox");
 const isPopUpBoxVisible: Ref<boolean> = ref(false);

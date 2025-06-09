@@ -4,13 +4,22 @@ import Card from "primevue/card";
 interface Props {
   post: Post;
 }
-const {} = defineProps<Props>();
+const props = defineProps<Props>();
+const now = new Date();
+const pDate = new Date(props.post.dateTime);
+const postHoursAgo = Math.round(Math.abs(now.getTime() - pDate.getTime()) / (1000 * 60 * 60));
 </script>
 
 <template>
-  <Card class="postCard">
+  <Card class="postCard cursor-pointer">
+    <template #subtitle>
+      <span>{{ post.authorName }}</span>
+    </template>
     <template #title>
       {{ post.title }}
+    </template>
+    <template #footer>
+      <div class="float-right">{{ postHoursAgo }} hours ago</div>
     </template>
     <template #content>
       <div v-html="post.body" class="postContent"></div>

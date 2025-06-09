@@ -30,35 +30,41 @@ export const saveCommentController = (db: IDatabase<object>, comment: CommentDto
 const LIMIT = 5;
 
 export const getPostController = (db: IDatabase<object>, postId?: number, dateTime?: Date, limit?: number, isOld: boolean = true): Promise<Array<PostDto>> => {
+  let result: Promise<Array<PostDto>>;
   if (limit == null) {
     limit = LIMIT; //the default limit
   } if (postId == null || dateTime == null) {
-    return getPostsByTime(db, limit);
+    result = getPostsByTime(db, limit);
   }
-  if (isOld) {
-    return getOldPostsAfterId(db, postId, dateTime, limit,);
+  else if (isOld) {
+    result = getOldPostsAfterId(db, postId, dateTime, limit,);
 
   } else {
-    return getNewPostsAfterId(db, postId, dateTime, limit);
+    result = getNewPostsAfterId(db, postId, dateTime, limit);
   }
-
+  return result;
 };
 
-export const pollPostController = (db: IDatabase<object>, cb: Array<() => void>) => {
-  return db.connect({ direct: true })
-    .then(sco => {
-      sco.client.on('notification', data => {
-        cb.forEach(cb => cb());
-        console.log(cb);
-        console.log(data);
-        cb.length = 0;
-      });
+let pollListener: null | Promise<void | null>;
 
-      return sco.none('LISTEN $1:name', 'postchannel');
-    })
-    .catch(error => {
-      console.log('Error:', error);
-    });
+export const pollPostController = (db: IDatabase<object>, cb: Array<() => void>) => {
+  if (pollListener == null) {
+    pollListener = db.connect({ direct: true })
+      .then(sco => {
+        sco.client.on('notification', data => {
+          cb.forEach(cb => cb());
+          console.log(cb);
+          console.log(data);
+          cb.length = 0;
+        });
+
+        return sco.none('LISTEN $1:name', 'postchannel');
+      })
+      .catch(error => {
+        console.log('Error:', error);
+      });
+  }
+  return pollListener;
 };
 
 

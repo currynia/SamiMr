@@ -3,9 +3,6 @@ import { ref, type Ref } from "vue";
 import Dialog from "primevue/dialog";
 import Button from "primevue/button";
 import Editor from "primevue/editor";
-import PostsManager from "./posts/postsManager";
-import Post from "./posts/post";
-import type { PostDto } from "@dto/postDto";
 import { InputText } from "primevue";
 
 const body: Ref<string> = ref("");

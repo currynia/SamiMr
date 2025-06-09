@@ -47,6 +47,7 @@ class DBManager {
 
   async init_db() {
     try {
+
       await this.createDatabaseIfNotExists();
     } catch (error) {
       console.error('Error:', error);
