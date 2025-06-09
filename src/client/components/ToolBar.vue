@@ -19,7 +19,13 @@ defineEmits<{
 </script>
 
 <template>
-  <Toolbar style="width: 100vw; margin: 0">
+  <Toolbar
+    :pt="{
+      root: {
+        class: 'border-none',
+      },
+    }"
+  >
     <template #start>
       <IconApp />
     </template>

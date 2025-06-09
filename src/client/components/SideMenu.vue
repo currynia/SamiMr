@@ -1,6 +1,6 @@
 <template>
   <div class="card flex justify-content-center h-f">
-    <Menu :model="items" class="w-full md:w-15rem">
+    <Menu :model="items" class="w-full md:w-15rem border-none">
       <template #submenuheader="{ item }">
         <span class="text-primary font-bold">{{ item.label }}</span>
       </template>
