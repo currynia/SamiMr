@@ -11,7 +11,14 @@ const postHoursAgo = Math.round(Math.abs(now.getTime() - pDate.getTime()) / (100
 </script>
 
 <template>
-  <Card class="postCard cursor-pointer">
+  <Card
+    class="postCard cursor-pointer"
+    :pt="{
+      body: {
+        class: 'hover:bg-(--p-primary-100)',
+      },
+    }"
+  >
     <template #subtitle>
       <span>{{ post.authorName }}</span>
     </template>

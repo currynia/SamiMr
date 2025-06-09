@@ -32,6 +32,14 @@ const onScroll = (e: Event) => {
     loadMorePosts();
   }
 };
+
+console.log(import.meta.env.MODE);
+if (import.meta.env.MODE == "development") {
+  postsManager.addPost(
+    new Post("hello", "I am emily.", "emily Woo", new Date(), 1),
+    new Post("Kranji Primary School", "I am Tay Apichiya.", "Tay Apichiya", new Date(), 1)
+  );
+}
 </script>
 
 <template>
