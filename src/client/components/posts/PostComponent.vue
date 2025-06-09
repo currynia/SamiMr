@@ -1,6 +1,8 @@
 <script setup lang="ts">
 import type Post from "./post";
 import Card from "primevue/card";
+import { $dt } from "@primeuix/themes";
+console.log($dt("semantic.colorScheme.light.primary.hoverColor"));
 interface Props {
   post: Post;
 }
@@ -15,7 +17,7 @@ const postHoursAgo = Math.round(Math.abs(now.getTime() - pDate.getTime()) / (100
     class="postCard cursor-pointer"
     :pt="{
       body: {
-        class: 'hover:bg-(--p-primary-100)',
+        class: 'hover:bg-(--p-primary-hover-color)',
       },
     }"
   >

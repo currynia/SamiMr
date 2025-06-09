@@ -30,9 +30,9 @@ const preset = definePreset(Lara, {
     colorScheme: {
       light: {
         primary: {
-          color: '{zinc.950}',
+          color: '{primary.950}',
           inverseColor: '#ffffff',
-          hoverColor: '{zinc.900}',
+          hoverColor: '{primary.100}',
           activeColor: '{zinc.800}'
         },
         highlight: {
@@ -46,7 +46,7 @@ const preset = definePreset(Lara, {
         primary: {
           color: '{zinc.50}',
           inverseColor: '{zinc.950}',
-          hoverColor: '{zinc.100}',
+          hoverColor: '{primary.800}',
           activeColor: '{zinc.200}'
         },
         highlight: {
