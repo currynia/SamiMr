@@ -15,8 +15,8 @@ const isSubmitting = ref(false);
 const isLoginSuccessful = ref(true);
 async function onFormSubmit(e: FormSubmitEvent<Record<string, unknown>>) {
   if (e.valid) {
-    const username = e.states.username;
-    const password = e.states.password;
+    const username: string = e.states.username.value;
+    const password: string = e.states.password.value;
     isSubmitting.value = true;
     const res = await postJsonFetch("/api/auth/login", { username, password });
     if (res.status == 200) {

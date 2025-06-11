@@ -1,8 +1,19 @@
 import type { IDatabase } from "pg-promise";
-import { registerModel } from "../model/authModel";
-import { bcryptHash } from "@/auth/hash";
+import { loginModel, registerModel } from "../model/authModel";
+import { bcryptCompare, bcryptHash } from "@/auth/hash";
 
 export const registerController = async (db: IDatabase<object>, username: string, password: string) => {
   const hashed = await bcryptHash(password);
   await registerModel(db, username, hashed);
+};
+
+export const loginController = async (db: IDatabase<object>, u?: string, p?: string) => {
+  if (u == undefined || p == undefined) {
+    throw new Error();
+  }
+  const model = await loginModel(db, u);
+  const { username, hashed } = model;
+  if (await bcryptCompare(p, hashed)) return username;
+  throw new Error("Invalid password");
+  ;
 };

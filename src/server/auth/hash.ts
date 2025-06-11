@@ -10,3 +10,13 @@ export const bcryptHash = (p: string): Promise<string> => {
     });
   });
 };
+
+export const bcryptCompare = (p: string, h: string): Promise<boolean> => {
+  return new Promise((resolve, reject) => {
+    bcrypt.compare(p, h, (err, result) => {
+      if (err) return reject(err);
+      if (!result) return resolve(false);
+      resolve(true);
+    });
+  });
+};
