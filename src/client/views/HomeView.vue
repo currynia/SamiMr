@@ -22,14 +22,14 @@ setUpOnStart();
 
 <template>
   <div class="flex flex-col h-full max-h-full">
-    <ToolBar
-      @create-post="
-        isPopUpBoxVisible = true;
-        popUpBox?.setVisible(true);
-      "
-    />
+    <ToolBar />
     <div class="grow flex flex-row overflow-auto">
-      <SideMenu />
+      <SideMenu
+        @create-post="
+          isPopUpBoxVisible = true;
+          popUpBox?.setVisible(true);
+        "
+      />
       <PostFeed class="grow" />
     </div>
   </div>

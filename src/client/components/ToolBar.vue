@@ -13,9 +13,6 @@ function toggleDarkMode() {
     darkModeIcon.value = "pi pi-moon";
   }
 }
-defineEmits<{
-  createPost: [];
-}>();
 </script>
 
 <template>
@@ -31,7 +28,6 @@ defineEmits<{
     </template>
     <template #end>
       <div style="display: block">
-        <Button @click="$emit('createPost')" label="Create post" />
         <Button @click="$router.push('/auth/login')" label="Login" />
         <Button @click="$router.push('/auth/register')" label="Sign up" />
         <i :class="darkModeIcon" @click="toggleDarkMode()"></i>

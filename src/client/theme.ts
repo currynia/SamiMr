@@ -1,6 +1,6 @@
 import { definePreset } from "@primeuix/themes";
-import Lara from '@primeuix/themes/lara';
-const preset = definePreset(Lara, {
+import Aura from '@primeuix/themes/aura';
+const preset = definePreset(Aura, {
   semantic: {
     primary: {
       50: '{zinc.50}',
@@ -20,8 +20,9 @@ const preset = definePreset(Lara, {
         primary: {
           color: '{primary.950}',
           inverseColor: '#ffffff',
-          hoverColor: '{primary.100}',
-          activeColor: '{zinc.800}'
+          hoverColor: '{primary.800}',
+          activeColor: '{zinc.800}',
+          hover: '{primary.100}'
         },
         highlight: {
           background: '{zinc.950}',
@@ -34,8 +35,9 @@ const preset = definePreset(Lara, {
         primary: {
           color: '{zinc.50}',
           inverseColor: '{zinc.950}',
-          hoverColor: '{primary.800}',
-          activeColor: '{zinc.200}'
+          hoverColor: '{primary.100}',
+          activeColor: '{zinc.200}',
+          hover: '{primary.800}'
         },
         highlight: {
           background: 'rgba(250, 250, 250, .16)',

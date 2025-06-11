@@ -1,36 +1,123 @@
 <script setup lang="ts">
-import { Form, type FormResolverOptions, type FormSubmitEvent } from '@primevue/forms';
-import { ref } from 'vue';
-import Message from 'primevue/message';
+import { Form, type FormSubmitEvent } from "@primevue/forms";
+import { ref } from "vue";
+import Message from "primevue/message";
 import Button from "primevue/button";
-import InputText from 'primevue/inputtext';
-import { zodResolver } from '@primevue/forms/resolvers/zod';
-import { z } from 'zod';
-const visible = ref(false);
+import InputText from "primevue/inputtext";
+import { zodResolver } from "@primevue/forms/resolvers/zod";
+import { z } from "zod";
+import Checkbox from "primevue/checkbox";
+import ToolBar from "../ToolBar.vue";
+import { postJsonFetch } from "@/util";
 
-const text = ref("");
-
-const initialValues = ref();
-
-function onFormSubmit(e: FormSubmitEvent<Record<string,never>>): undefined {
-    const lol = fetch('api/auth/login', {method:"POST"}).then(_e=>console.log("LOL"));
+const checked1 = ref(true);
+const isSubmitting = ref(false);
+const isLoginSuccessful = ref(true);
+async function onFormSubmit(e: FormSubmitEvent<Record<string, unknown>>) {
+  if (e.valid) {
+    const username = e.states.username;
+    const password = e.states.password;
+    isSubmitting.value = true;
+    const res = await postJsonFetch("/api/auth/login", { username, password });
+    if (res.status == 200) {
+      isLoginSuccessful.value = true;
+    } else if (res.status == 401) {
+      isLoginSuccessful.value = false;
+    }
+    isSubmitting.value = false;
+  }
 }
 
-const resolver = ref(zodResolver(
+const resolver = ref(
+  zodResolver(
     z.object({
-        username: z.string().min(1, { message: 'Username is required via Zod.' })
+      username: z.string().min(1, { message: "Username is required." }),
+      password: z.string().min(1, { message: "Password is required" }),
     })
-));
+  )
+);
 </script>
 
 <template>
-
-   <Form v-slot="$form" :initialValues :resolver="resolver" @submit="onFormSubmit" class="flex flex-col gap-4 w-full sm:w-56">
-    <div class="flex flex-col gap-1">
-        <InputText name="username" type="text" placeholder="Username" fluid />
-        <Message v-if="$form.username?.invalid" severity="error" size="small" variant="simple">{{ $form.username.error?.message }}</Message>
+  <ToolBar />
+  <div class="mt-10">
+    <div
+      class="bg-surface-0 dark:bg-surface-900 p-8 md:p-12 shadow-sm rounded-2xl w-full max-w-xl mx-auto flex flex-col gap-8"
+    >
+      <div class="flex flex-col items-center gap-4">
+        <div class="flex flex-col items-center gap-2 w-full">
+          <div
+            class="text-surface-900 dark:text-surface-0 text-2xl font-semibold leading-tight text-center w-full"
+          >
+            Welcome Back
+          </div>
+          <div class="text-center w-full">
+            <span class="text-surface-700 dark:text-surface-200 leading-normal"
+              >Don't have an account?</span
+            >
+            <a class="text-primary font-medium ml-1 cursor-pointer hover:text-primary-emphasis"
+              >Create today!</a
+            >
+          </div>
+        </div>
+      </div>
+      <Form :resolver="resolver" @submit="(e) => onFormSubmit(e)">
+        <div class="flex flex-col gap-6 w-full">
+          <div class="flex flex-col gap-2 w-full">
+            <label
+              for="username"
+              class="text-surface-900 dark:text-surface-0 font-medium leading-normal"
+              >Username</label
+            >
+            <InputText
+              name="username"
+              type="text"
+              placeholder="Username"
+              class="w-full px-3 py-2 shadow-sm rounded-lg"
+            />
+          </div>
+          <div class="flex flex-col gap-2 w-full">
+            <label
+              for="password"
+              class="text-surface-900 dark:text-surface-0 font-medium leading-normal"
+              >Password</label
+            >
+            <InputText
+              name="password"
+              type="password"
+              placeholder="Password"
+              class="w-full px-3 py-2 shadow-sm rounded-lg"
+            />
+          </div>
+          <div
+            class="flex flex-col sm:flex-row items-start sm:items-center justify-between w-full gap-3 sm:gap-0"
+          >
+            <div class="flex items-center gap-2">
+              <Checkbox id="rememberme1" v-model="checked1" :binary="true" />
+              <label for="rememberme1" class="text-surface-900 dark:text-surface-0 leading-normal"
+                >Remember me</label
+              >
+            </div>
+            <a class="text-primary font-medium cursor-pointer hover:text-primary-emphasis"
+              >Forgot your password?</a
+            >
+          </div>
+        </div>
+        <Button
+          :loading="isSubmitting"
+          label="Sign In"
+          icon="pi pi-user"
+          class="w-full py-2 rounded-lg flex gap-2 mt-7"
+          type="submit"
+        >
+          <template #icon>
+            <i class="pi pi-user !text-base !leading-normal" />
+          </template>
+        </Button>
+        <Message v-if="!isLoginSuccessful" severity="error" size="small" variant="simple">
+          Username or password is incorrect.
+        </Message>
+      </Form>
     </div>
-    <Button type="submit" severity="secondary" label="Submit" />
-</Form>
-
+  </div>
 </template>

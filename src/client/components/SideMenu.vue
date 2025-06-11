@@ -19,7 +19,7 @@
       <template #end>
         <button
           v-ripple
-          class="relative overflow-hidden w-full p-link flex align-items-center p-2 pl-3 text-color hover:surface-200 border-noround"
+          class="relative overflow-hidden w-full p-link flex align-items-center p-2 pl-3 text-color border-noround"
         >
           <Avatar
             image="https://primefaces.org/cdn/primevue/images/avatar/amyelsner.png"
@@ -40,19 +40,21 @@
 import { ref } from "vue";
 import Menu from "primevue/menu";
 
+const emit = defineEmits(["createPost"]);
 const items = ref([
   {
-    label: "Documents",
+    label: "Actions",
     items: [
       {
-        label: "New",
+        label: "New post",
         icon: "pi pi-plus",
-        shortcut: "⌘+N",
+        command: () => {
+          emit("createPost");
+        },
       },
       {
         label: "Search",
         icon: "pi pi-search",
-        shortcut: "⌘+S",
       },
     ],
   },
@@ -62,7 +64,6 @@ const items = ref([
       {
         label: "Settings",
         icon: "pi pi-cog",
-        shortcut: "⌘+O",
       },
       {
         label: "Messages",
@@ -72,7 +73,6 @@ const items = ref([
       {
         label: "Logout",
         icon: "pi pi-sign-out",
-        shortcut: "⌘+Q",
       },
     ],
   },
