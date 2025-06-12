@@ -8,12 +8,18 @@ export const login = async (req: Request, res: Response) => {
   const username: string = req.body?.username;
   const password: string = req.body?.password;
   try {
-    await loginController(db, username, password);
-    res.status(200).send("OK");
+    const o = await loginController(db, username, password);
+
+    if (o == undefined) {
+      res.status(500).send("Internal server error occured");
+      return;
+    }
+
+    res.status(200).send(o);
   } catch (e) {
     res.status(401).send();
+    console.log(e);
   }
-  console.log('Login request:', req.body);
 };
 
 export const register = async (req: Request, res: Response) => {

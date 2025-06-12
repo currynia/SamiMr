@@ -1,8 +1,7 @@
 <script setup lang="ts">
 import type Post from "./post";
 import Card from "primevue/card";
-import { $dt } from "@primeuix/themes";
-console.log($dt("semantic.colorScheme.light.highlight.focusColor"));
+
 interface Props {
   post: Post;
 }

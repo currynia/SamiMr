@@ -21,6 +21,11 @@ async function onFormSubmit(e: FormSubmitEvent<Record<string, unknown>>) {
     const res = await postJsonFetch("/api/auth/login", { username, password });
     if (res.status == 200) {
       isLoginSuccessful.value = true;
+      const jwt = await res
+        .text()
+        .then((s) => s.split(".")[1])
+        .then((s) => JSON.parse(atob(s)));
+      console.log(jwt);
     } else if (res.status == 401) {
       isLoginSuccessful.value = false;
     }
