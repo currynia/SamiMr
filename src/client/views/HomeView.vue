@@ -7,6 +7,7 @@ import Post from "@/components/posts/post";
 import { postJsonFetch } from "@/util";
 import { setUpOnStart } from "@/startup";
 import SideMenu from "@/components/SideMenu.vue";
+import { Session } from "@/session";
 
 const PopUpBox = defineAsyncComponent(() => import("@/components/PopUpBox.vue"));
 const popUpBox = useTemplateRef<typeof PopUpBox>("popUpBox");
@@ -17,6 +18,8 @@ const savePostCallback = async (s: { title: string; body: string }) => {
   postJsonFetch("/api/post/save", p);
 };
 
+const session = Session.getSessionInstance();
+console.log(session.isAuthenticated);
 setUpOnStart();
 </script>
 
@@ -25,6 +28,7 @@ setUpOnStart();
     <ToolBar />
     <div class="grow flex flex-row overflow-auto">
       <SideMenu
+        v-if="session.isAuthenticated.value"
         @create-post="
           isPopUpBoxVisible = true;
           popUpBox?.setVisible(true);

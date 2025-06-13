@@ -3,8 +3,8 @@ import { pollGetPosts, savePost, saveComment, getPosts } from '../handler/postsH
 
 const postRouter = express.Router();
 
-postRouter.post('/save', savePost);
-postRouter.post('/savecomment', saveComment);
-postRouter.post('/getposts', getPosts);
-postRouter.post('/poll/getposts', pollGetPosts);
+postRouter.post('/post/save', savePost);
+postRouter.post('/post/savecomment', saveComment);
+postRouter.post('/public/post/getposts', getPosts);
+postRouter.post('/public/post/poll/getposts', pollGetPosts);
 export default postRouter;

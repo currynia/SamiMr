@@ -17,9 +17,14 @@ app.use(express.static(fileURLToPath(new URL('../client/dist/', import.meta.url)
 app.get('/', (req, res) => {
   res.sendFile(fileURLToPath(new URL('../client/dist/index.html', import.meta.url)));
 });
+
 app.use("/api/auth", authRouter);
 app.use(authMiddleware);
-app.use("/api/post", postRouter);
+app.use("/api", postRouter);
+app.get("/api/status", (_, res) => {
+  //authmiddleware will block if not authenticated
+  res.status(200).send(res.locals.payload);
+});
 app.listen(port, "0.0.0.0", () => {
   console.log(`Example app listening on port ${port}`);
 });
