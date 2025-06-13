@@ -13,8 +13,8 @@ export const loginController = async (db: IDatabase<object>, u?: string, p?: str
     throw new Error();
   }
   const model = await loginModel(db, u);
-  const { username, hashed } = model;
-  if (await bcryptCompare(p, hashed)) return sign({ username });
+  const { hashed, ...payload } = model;
+  if (await bcryptCompare(p, hashed)) return { payload, jwt: sign(payload) };
   throw new Error("Invalid password");
   ;
 };

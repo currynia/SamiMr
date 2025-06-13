@@ -8,14 +8,13 @@ export const login = async (req: Request, res: Response) => {
   const username: string = req.body?.username;
   const password: string = req.body?.password;
   try {
-    const o = await loginController(db, username, password);
+    const { payload, jwt } = await loginController(db, username, password);
 
-    if (o == undefined) {
+    if (jwt == undefined) {
       res.status(500).send("Internal server error occured");
       return;
     }
-
-    res.status(200).send(o);
+    res.status(200).cookie('token', jwt, { httpOnly: true, sameSite: "strict" }).send(payload);
   } catch (e) {
     res.status(401).send();
     console.log(e);
