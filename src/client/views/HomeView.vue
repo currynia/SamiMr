@@ -5,7 +5,6 @@ import { ref, useTemplateRef, defineAsyncComponent, type Ref } from "vue";
 import type { PostDto } from "@dto/postDto";
 import Post from "@/components/posts/post";
 import { postJsonFetch } from "@/util";
-import { setUpOnStart } from "@/startup";
 import SideMenu from "@/components/SideMenu.vue";
 import { Session } from "@/session";
 

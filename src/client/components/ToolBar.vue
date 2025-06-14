@@ -16,13 +16,7 @@ function toggleDarkMode() {
 </script>
 
 <template>
-  <Toolbar
-    :pt="{
-      root: {
-        class: 'border-none',
-      },
-    }"
-  >
+  <Toolbar pt:root:class="border-none">
     <template #start>
       <IconApp />
     </template>

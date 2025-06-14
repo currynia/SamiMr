@@ -113,17 +113,26 @@ const preset = definePreset(Material, {
       },
     },
     toolbar: {
-      root: {
-        borderRadius: "0",
+      colorScheme: {
+        light: {
+          root: {
+            background: "{surface-container.default}",
+          },
+        },
+        dark: {
+          root: {
+            background: "{surface-container.default}",
+          },
+        },
       },
     },
     menu: {
       root: {
         borderRadius: "0",
+        background: "{surface-container.default}",
       },
     },
   },
-  extend: {},
 });
 
 export const theme = {
