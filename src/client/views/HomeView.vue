@@ -19,8 +19,6 @@ const savePostCallback = async (s: { title: string; body: string }) => {
 };
 
 const session = Session.getSessionInstance();
-console.log(session.isAuthenticated);
-setUpOnStart();
 </script>
 
 <template>

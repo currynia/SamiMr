@@ -6,6 +6,7 @@ import { Session } from "./session";
 const postsManager = PostsManager.getPostManager();
 
 export const setUpOnStart = async () => {
+  initSession();
   await loadFeedOnStartUp();
   pollGetPosts();
 };

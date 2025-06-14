@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import { RouterView } from "vue-router";
-import { initSession } from "./startup";
+import { initSession, setUpOnStart } from "./startup";
 
-initSession();
+setUpOnStart();
 </script>
 
 <template>
