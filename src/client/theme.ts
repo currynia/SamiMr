@@ -2,67 +2,58 @@ import { $dt, definePreset } from "@primeuix/themes";
 import Material from "@primeuix/themes/material";
 
 const preset = definePreset(Material, {
-  primitive: {
-    custom: {
-      DEFAULT: "#2A669F",
-      50: "#a0cafd",
-      100: "#8CB7E1",
-      200: "#6BA3D8",
-      300: "#4B8FCF",
-      400: "#337BBF",
-      500: "#2A669F",
-      600: "#25598B",
-      700: "#1F4C77",
-      800: "#1A3F62",
-      900: "#15324E",
-      950: "#122C44",
-    },
-  },
   semantic: {
-    primary: {
-      50: "{custom.50}",
-      100: "{custom.100}",
-      200: "{custom.200}",
-      300: "{custom.300}",
-      400: "{custom.400}",
-      500: "{custom.500}",
-      600: "{custom.600}",
-      700: "{custom.700}",
-      800: "{custom.800}",
-      900: "{custom.900}",
-      950: "{custom.950}",
-    },
-
     colorScheme: {
       light: {
+        primaryShades: {
+          DEFAULT: "#0B6780",
+          50: "#52CEF0",
+          100: "#40C9EF",
+          200: "#1ABFEB",
+          300: "#11A3CB",
+          400: "#0E85A6",
+          500: "#0B6780",
+          600: "#095469",
+          700: "#074151",
+          800: "#052E3A",
+          900: "#031B22",
+          950: "#021216",
+        },
         surface: {
-          DEFAULT: "#F8F9FF",
+          DEFAULT: "#F5FAFD",
           50: "#FFFFFF",
           100: "#FFFFFF",
           200: "#FFFFFF",
-          300: "#FFFFFF",
-          400: "#FFFFFF",
-          500: "#F8F9FF",
-          600: "#E9ECFF",
-          700: "#D9DFFF",
-          800: "#CAD2FF",
-          900: "#BBC5FF",
-          950: "#B3BEFF",
+          300: "#FEFEFF",
+          400: "#F9FCFE",
+          500: "#F5FAFD",
+          600: "#E4F1FA",
+          700: "#D3E9F6",
+          800: "#C2E0F3",
+          900: "#B1D8EF",
+          950: "#A9D4EE",
         },
-        "surface-container": {
+        container: {
+          tertiary: "#e1dfff",
+        },
+        onContainer: {
+          tertiary: "#434465",
+        },
+        surfaceContainer: {
           lowest: "#ffffff",
-          low: "#f2f3fa",
-          default: "#eceef4",
-          high: "#e6e8ee",
-          highest: "#e1e2e8",
+          low: "#f0f4f7",
+          default: "#eaeef2",
+          high: "#e4e9ec",
+          highest: "#dee3e6",
         },
         onSurface: {
-          DEFAULT: "#191c20",
-          var: "#43474e",
+          DEFAULT: "#171c1f",
+          var: "#40484c",
         },
         primary: {
-          color: "{primary.500}",
-          hoverColor: "{primary.400}",
+          color: "{primaryShades.500}",
+          hoverColor: "{primaryShades.400}",
+          onPrimary: "#ffffff",
         },
         text: {
           color: "{onSurface.DEFAULT}",
@@ -70,34 +61,54 @@ const preset = definePreset(Material, {
         },
       },
       dark: {
+        primaryShades: {
+          DEFAULT: "#89D0ED",
+          50: "#FFFFFF",
+          100: "#FFFFFF",
+          200: "#E6F5FB",
+          300: "#C7E9F6",
+          400: "#A8DCF2",
+          500: "#89D0ED",
+          600: "#54BBE5",
+          700: "#21A5DA",
+          800: "#197DA5",
+          900: "#115570",
+          950: "#0D4156",
+        },
         surface: {
-          DEFAULT: "#111418",
-          50: "#4A5769",
-          100: "#445060",
-          200: "#37414E",
-          300: "#2A323C",
-          400: "#1E232A",
-          500: "#111418",
+          DEFAULT: "#0F1417",
+          50: "#3C505C",
+          100: "#374A55",
+          200: "#2D3C45",
+          300: "#232F36",
+          400: "#192126",
+          500: "#0F1417",
           600: "#000000",
           700: "#000000",
           800: "#000000",
           900: "#000000",
           950: "#000000",
         },
-        "surface-container": {
-          lowest: "#0b0e13",
-          low: "#191c20",
-          default: "#1d2024",
-          high: "#272a2f",
-          highest: "#32353a",
+        container: {
+          tertiary: "#434465",
+        },
+        onContainer: {
+          tertiary: "#e1dfff",
+        },
+        surfaceContainer: {
+          lowest: "#0a0f11",
+          low: "#171c1f",
+          default: "#1b2023",
+          high: "#252b2d",
+          highest: "#303638",
         },
         onSurface: {
-          DEFAULT: "#e1e2e8",
-          var: "#c3c6cf",
+          DEFAULT: "#dee3e6",
+          var: "#c0c8cc",
         },
         primary: {
-          color: "{primary.50}",
-          hoverColor: "{primary.100}",
+          color: "{primaryShades.500}",
+          hoverColor: "{primaryShades.400}",
         },
         text: {
           color: "{onSurface.DEFAULT}",
@@ -109,27 +120,28 @@ const preset = definePreset(Material, {
   components: {
     card: {
       root: {
-        background: "{surface-container.default}",
+        background: "{surfaceContainer.low}",
+        borderRadius: "12px",
       },
     },
     toolbar: {
       colorScheme: {
         light: {
           root: {
-            background: "{surface-container.default}",
+            background: "{surfaceContainer.default}",
           },
         },
         dark: {
           root: {
-            background: "{surface-container.default}",
+            background: "{surfaceContainer.default}",
           },
         },
       },
     },
     menu: {
       root: {
-        borderRadius: "0",
-        background: "{surface-container.default}",
+        background: "{surfaceContainer.highest}",
+        color: "{onSurface.default}",
       },
     },
   },

@@ -2,17 +2,7 @@
 import Toolbar from "primevue/toolbar";
 import Button from "primevue/button";
 import IconApp from "./IconApp.vue";
-import { ref } from "vue";
-
-const darkModeIcon = ref("pi pi-moon");
-function toggleDarkMode() {
-  document.documentElement.classList.toggle("my-app-dark");
-  if (darkModeIcon.value === "pi pi-moon") {
-    darkModeIcon.value = "pi pi-sun";
-  } else if (darkModeIcon.value === "pi pi-sun") {
-    darkModeIcon.value = "pi pi-moon";
-  }
-}
+import { darkModeIcon, toggleDarkMode } from "@/util";
 </script>
 
 <template>

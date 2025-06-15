@@ -12,7 +12,6 @@ export const setUpOnStart = async () => {
 };
 
 const loadFeedOnStartUp = async () => {
-
   const res: Response = await fetch("/api/public/post/getposts", {
     method: "POST",
   });
@@ -40,12 +39,11 @@ const pollGetPosts = async () => {
 export const initSession = async () => {
   const res = await fetch("/api/status", { method: "GET", credentials: "same-origin" });
   const session = Session.getSessionInstance();
-  if (res.status == 401) {
-    session.isAuthenticated.value = false;
-  } else if (res.status == 200) {
+  if (res.status == 200) {
     session.isAuthenticated.value = true;
     const payload = await res.json();
     session.user.value = payload;
+  } else {
+    session.isAuthenticated.value = false;
   }
-
 };

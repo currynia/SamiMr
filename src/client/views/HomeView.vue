@@ -21,17 +21,19 @@ const session = Session.getSessionInstance();
 </script>
 
 <template>
-  <div class="flex flex-col h-full max-h-full">
-    <ToolBar />
-    <div class="grow flex flex-row overflow-auto">
+  <div class="block h-full max-h-full">
+    <ToolBar v-if="!session.isAuthenticated.value" />
+    <div class="w-full h-full flex flex-row overflow-auto">
       <SideMenu
         v-if="session.isAuthenticated.value"
         @create-post="
           isPopUpBoxVisible = true;
           popUpBox?.setVisible(true);
         "
+        class="grow-1"
       />
-      <PostFeed class="grow" />
+      <PostFeed class="flex flex-col gap-6 grow-4 m-2" />
+      <div class="grow-4"></div>
     </div>
   </div>
   <PopUpBox

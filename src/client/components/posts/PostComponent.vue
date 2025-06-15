@@ -16,7 +16,7 @@ const postHoursAgo = Math.round(Math.abs(now.getTime() - pDate.getTime()) / (100
     class="postCard cursor-pointer"
     :pt="{
       body: {
-        class: 'hover:bg-(--p-primary-hover)',
+        class: 'hover:bg-(--p-primary-hover) pl-8 pr-8',
       },
     }"
   >

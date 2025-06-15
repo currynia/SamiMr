@@ -1,6 +1,9 @@
 <template>
   <div class="card flex justify-content-center h-f">
-    <Menu :model="items" class="w-full md:w-15rem border-none">
+    <Menu :model="items" class="w-full md:w-15rem border-none rounded-r-2xl">
+      <template #start>
+        <IconApp />
+      </template>
       <template #submenuheader="{ item }">
         <span class="text-primary font-bold">{{ item.label }}</span>
       </template>
@@ -39,7 +42,8 @@
 <script setup lang="ts">
 import { ref } from "vue";
 import Menu from "primevue/menu";
-
+import IconApp from "./IconApp.vue";
+import { darkModeIcon, toggleDarkMode } from "@/util";
 const emit = defineEmits(["createPost"]);
 const items = ref([
   {
@@ -65,6 +69,7 @@ const items = ref([
         label: "Settings",
         icon: "pi pi-cog",
       },
+      { label: "Toggle dark Mode", icon: darkModeIcon, command: toggleDarkMode },
       {
         label: "Messages",
         icon: "pi pi-inbox",
