@@ -1,49 +1,32 @@
 <template>
-  <div class="card flex justify-content-center h-f">
-    <Menu :model="items" class="w-full md:w-15rem border-none rounded-r-2xl">
-      <template #start>
-        <IconApp />
-      </template>
-      <template #submenuheader="{ item }">
-        <span class="text-primary font-bold">{{ item.label }}</span>
-      </template>
-      <template #item="{ item, props }">
-        <a v-ripple class="flex align-items-center" v-bind="props.action">
-          <span :class="item.icon" />
-          <span class="ml-2">{{ item.label }}</span>
-          <Badge v-if="item.badge" class="ml-auto" :value="item.badge" />
-          <span
-            v-if="item.shortcut"
-            class="ml-auto border-1 surface-border border-round primary-950 text-xs p-1"
-            >{{ item.shortcut }}</span
-          >
-        </a>
-      </template>
-      <template #end>
-        <button
-          v-ripple
-          class="relative overflow-hidden w-full p-link flex align-items-center p-2 pl-3 text-color border-noround"
-        >
-          <Avatar
-            image="https://primefaces.org/cdn/primevue/images/avatar/amyelsner.png"
-            class="mr-2"
-            shape="circle"
-          />
-          <span class="inline-flex flex-column">
-            <span class="font-bold">Amy Elsner</span>
-            <span class="text-sm">Admin</span>
-          </span>
-        </button>
-      </template>
-    </Menu>
-  </div>
+  <Menu
+    :model="items"
+    :pt="{
+      root: {
+        class: ' pr-0 pl-5 pd-5 border-solid border-r bg-surface-500',
+      },
+      item: { class: 'hover:bg-surface-600 p-3 max-w-3/4 rounded-xl' },
+      submenuLabel: { class: 'mt-3' },
+    }"
+  >
+    <template #submenuheader="{ item }">
+      <span class="text-primary font-bold">{{ item.label }}</span>
+    </template>
+    <template #item="{ item, props }">
+      <a v-bind="props.action">
+        <span type="submit" :class="item.icon" />
+        <span class="ml-2">{{ item.label }}</span>
+      </a>
+    </template>
+    <template #end> </template>
+  </Menu>
 </template>
 
 <script setup lang="ts">
 import { ref } from "vue";
 import Menu from "primevue/menu";
-import IconApp from "./IconApp.vue";
 import { darkModeIcon, toggleDarkMode } from "@/util";
+
 const emit = defineEmits(["createPost"]);
 const items = ref([
   {
@@ -55,10 +38,6 @@ const items = ref([
         command: () => {
           emit("createPost");
         },
-      },
-      {
-        label: "Search",
-        icon: "pi pi-search",
       },
     ],
   },

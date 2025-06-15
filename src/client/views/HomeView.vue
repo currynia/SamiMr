@@ -22,8 +22,8 @@ const session = Session.getSessionInstance();
 
 <template>
   <div class="block h-full max-h-full">
-    <ToolBar v-if="!session.isAuthenticated.value" />
-    <div class="w-full h-full flex flex-row overflow-auto">
+    <ToolBar class="h-1/8" />
+    <div class="w-full h-7/8 flex flex-row overflow-auto">
       <SideMenu
         v-if="session.isAuthenticated.value"
         @create-post="
@@ -32,7 +32,7 @@ const session = Session.getSessionInstance();
         "
         class="grow-1"
       />
-      <PostFeed class="flex flex-col gap-6 grow-4 m-2" />
+      <PostFeed class="grow-4" />
       <div class="grow-4"></div>
     </div>
   </div>

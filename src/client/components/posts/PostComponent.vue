@@ -15,9 +15,15 @@ const postHoursAgo = Math.round(Math.abs(now.getTime() - pDate.getTime()) / (100
   <Card
     class="postCard cursor-pointer"
     :pt="{
-      body: {
-        class: 'hover:bg-(--p-primary-hover) pl-8 pr-8',
+      title: { class: 'font-bold text-2xl' },
+      content: {
+        class: 'text-xl',
       },
+      body: {
+        class: 'shadow-md bg-surface-300 rounded-xl p-5 flex gap-5 flex-col hover:bg-surface-500',
+      },
+      subtitle: { class: 'text-slate-500' },
+      footer: { class: 'w-full' },
     }"
   >
     <template #subtitle>
@@ -27,29 +33,10 @@ const postHoursAgo = Math.round(Math.abs(now.getTime() - pDate.getTime()) / (100
       {{ post.title }}
     </template>
     <template #footer>
-      <div class="float-right">{{ postHoursAgo }} hours ago</div>
+      <div class="w-fit ml-auto">{{ postHoursAgo }} hours ago</div>
     </template>
     <template #content>
       <div v-html="post.body" class="postContent"></div>
     </template>
   </Card>
 </template>
-
-<style scoped>
-.postContent * {
-  width: 100%;
-
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
-
-.postContent {
-  width: 100%;
-  max-height: 20vh;
-  display: inline-block;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
-</style>

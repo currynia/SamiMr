@@ -43,7 +43,7 @@ if (import.meta.env.MODE == "development") {
 </script>
 
 <template>
-  <div @scroll="onScroll">
+  <div @scroll="onScroll" class="flex flex-col gap-5 overflow-auto p-3">
     <li v-for="post in posts" :key="post.body" style="list-style-type: none">
       <PostComponent :post="post" @click="viewFullPost(post)" />
     </li>

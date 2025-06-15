@@ -1,4 +1,34 @@
 @import "tailwindcss";
+@theme {
+  --color-primary-50: #f3faff;
+  --color-primary-100: #e6f6ff;
+  --color-primary-200: #ccedff;
+  --color-primary-300: #a7e2fe;
+  --color-primary-400: #82dafe;
+  --color-primary-500: #4dd2fe;
+  --color-primary-600: #13a5cc;
+  --color-primary-700: #0b7996;
+  --color-primary-800: #055267;
+  --color-primary-900: #012c38;
+  --color-primary-950: #011a23;
+}
+
+@theme {
+  --color-surface-50: #FFFFFF;
+  --color-surface-100: #FFFFFF;
+  --color-surface-200: #FCFEFF;
+  --color-surface-300: #FCFEFF;
+  --color-surface-400: #F7FBFC;
+  --color-surface-500: #f5fafd;
+  --color-surface-600: #C5D7E3;
+  --color-surface-700: #8AA5BD;
+  --color-surface-800: #577796;
+  --color-surface-900: #324F73;
+  --color-surface-950: #152A4A;
+}
+
+@custom-variant dark (&:where(.dark, .dark *));
+
 #app {
  width: 100vw;
   margin: 0 auto;
@@ -6,11 +36,5 @@
   font-weight: normal;
   height:100vh;
   padding:0;
-  background-color: var(--p-surface-500);
-  font-family: "Noto Sans", sans-serif;
-  font-optical-sizing: auto;
-  font-weight: 300;
-  font-style: normal;
-  font-variation-settings:
-    "wdth" 100;
+  background-color: white;
 }

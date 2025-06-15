@@ -8,7 +8,7 @@ export const postJsonFetch = (path: string, data: unknown) => {
 };
 
 export function toggleDarkMode() {
-  document.documentElement.classList.toggle("my-app-dark");
+  document.documentElement.classList.toggle("dark");
   if (darkModeIcon.value === "pi pi-moon") {
     darkModeIcon.value = "pi pi-sun";
   } else if (darkModeIcon.value === "pi pi-sun") {
