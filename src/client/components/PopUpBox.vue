@@ -33,10 +33,15 @@ defineExpose({ setVisible });
     modal
     header="Create post"
     :pt="{
-      root: { class: 'bg-surface-600 w-7/8 h-7/8 p-5' },
-      headerActions: { class: 'w-fit ml-auto' },
-      header: { class: 'h-1/8' },
-      content: { class: 'flex flex-col h-7/8' },
+      title: { class: 'text-xl font-bold' },
+      mask: { class: 'bg-black/30' },
+      root: {
+        class: 'bg-surface-600 w-1/2 h-3/4 p-5 rounded-xl shadow-xl',
+      },
+      headerActions: { class: 'w-fit ml-auto self-start' },
+      header: { class: 'mt-1 flex flex-row' },
+      content: { class: 'flex flex-col gap-2 grow' },
+      pcCloseButton: { root: { class: 'bg-transparent' } },
     }"
   >
     <InputText
@@ -46,16 +51,21 @@ defineExpose({ setVisible });
       placeholder="Title"
       v-show="boxType == 'post'"
       :unstyled="false"
+      :pt="{
+        root: {
+          class: 'bg-slate-100 rounded-xl border p-2 pl-3 ',
+        },
+      }"
     />
     <Editor
       :unstyled="false"
       v-model="body"
       id="postbody"
       :pt="{
-        root: { class: 'grow bg-white stroke-black' },
+        root: { class: 'grow bg-slate-100 stroke-black flex flex-col rounded-xl' },
 
-        toolbar: { class: 'p-editor-toolbar ql-toolbar ql-snow  border h-1/10' },
-        content: { class: 'border-b border-r border-l h-9/10' },
+        toolbar: { class: 'p-editor-toolbar ql-toolbar ql-snow  border rounded-t-xl' },
+        content: { class: 'border-b border-r grow border-l rounded-b-xl' },
       }"
     />
 
