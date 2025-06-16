@@ -32,8 +32,12 @@ defineExpose({ setVisible });
     v-model:visible="isVisible"
     modal
     header="Create post"
-    style="width: 75%; height: 80%"
-    contentStyle="height:100%; display:flex; flex-direction:column;"
+    :pt="{
+      root: { class: 'bg-surface-600 w-7/8 h-7/8 p-5' },
+      headerActions: { class: 'w-fit ml-auto' },
+      header: { class: 'h-1/8' },
+      content: { class: 'flex flex-col h-7/8' },
+    }"
   >
     <InputText
       v-model="title"
@@ -41,14 +45,21 @@ defineExpose({ setVisible });
       size="large"
       placeholder="Title"
       v-show="boxType == 'post'"
+      :unstyled="false"
     />
     <Editor
-      style="flex-grow: 1; display: flex; flex-direction: column; margin-bottom: 0.5rem"
+      :unstyled="false"
       v-model="body"
       id="postbody"
+      :pt="{
+        root: { class: 'grow bg-white stroke-black' },
+
+        toolbar: { class: 'p-editor-toolbar ql-toolbar ql-snow  border h-1/10' },
+        content: { class: 'border-b border-r border-l h-9/10' },
+      }"
     />
 
-    <div class="dialogbox-button-wrapper" style="margin-top: auto">
+    <div class="dialogbox-button-wrapper mt-auto">
       <Button
         type="button"
         label="Cancel"

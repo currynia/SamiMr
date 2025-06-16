@@ -5,7 +5,7 @@
       root: {
         class: ' pr-0 pl-5 pd-5 border-solid border-r bg-surface-500',
       },
-      item: { class: 'hover:bg-surface-600 p-3 max-w-3/4 rounded-xl' },
+      item: { class: 'hover:bg-surface-600 p-3 pr-0 max-w-3/4 rounded-xl' },
       submenuLabel: { class: 'mt-3' },
     }"
   >

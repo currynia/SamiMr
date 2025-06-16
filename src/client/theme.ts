@@ -1,4 +1,12 @@
 export const theme = {
+  theme: {
+    options: {
+      cssLayer: {
+        name: "primevue",
+        order: "theme, base, primevue",
+      },
+    },
+  },
   unstyled: true,
   pt: {
     button: {

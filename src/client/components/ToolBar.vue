@@ -10,7 +10,7 @@ import { InputText } from "primevue";
   <Toolbar
     :pt="{
       root: {
-        class: 'flex flex-row pl-5 pr-6 pt-1 border-b items-center gap-40 bg-surface-500',
+        class: 'flex flex-row pl-5 pr-6 pt-1 border-b items-center gap-40 bg-surface-600 ',
       },
 
       center: { class: 'grow' },
@@ -24,10 +24,11 @@ import { InputText } from "primevue";
     </template>
     <template #center>
       <div class="p-1 pl-3 outline-1 rounded-xl bg-gray-200">
-        <InputIcon>
+        <InputIcon class="flex flex-row items-center-safe gap-3 pr-1">
           <i class="pi pi-search text-stone-700" />
+
+          <InputText class="outline-0 grow text-stone-700" placeholder="Search" />
         </InputIcon>
-        <InputText class="ml-3 text-stone-700" placeholder="Search" />
       </div>
     </template>
     <template #end>

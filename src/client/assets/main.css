@@ -14,21 +14,30 @@
 }
 
 @theme {
-  --color-surface-50: #FFFFFF;
-  --color-surface-100: #FFFFFF;
-  --color-surface-200: #FCFEFF;
-  --color-surface-300: #FCFEFF;
-  --color-surface-400: #F7FBFC;
+  --color-surface-50: #ffffff;
+  --color-surface-100: #ffffff;
+  --color-surface-200: #fafdfe;
+  --color-surface-300: #fafdfe;
+  --color-surface-400: #f5fafd;
   --color-surface-500: #f5fafd;
-  --color-surface-600: #C5D7E3;
-  --color-surface-700: #8AA5BD;
-  --color-surface-800: #577796;
-  --color-surface-900: #324F73;
-  --color-surface-950: #152A4A;
+  --color-surface-600: #e6f3fa;
+  --color-surface-700: #d1e9f6;
+  --color-surface-800: #c0e2f3;
+  --color-surface-900: #a9d8f0;
+  --color-surface-950: #a3d6ef;
 }
 
 @custom-variant dark (&:where(.dark, .dark *));
+:root {
+  --editor-icon-color: #0b7996; /* or any of your primary/surface tokens */
+}
 
+.dark {
+  --editor-icon-color: #ffffff; /* white icons in dark mode */
+}
+.ql-toolbar .ql-stroke {
+  stroke: #000000 ; /* your --color-primary-700 */
+}
 #app {
  width: 100vw;
   margin: 0 auto;
