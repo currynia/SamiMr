@@ -1,44 +1,12 @@
 @import "tailwindcss";
-@theme {
-  --color-primary-50: #f3faff;
-  --color-primary-100: #e6f6ff;
-  --color-primary-200: #ccedff;
-  --color-primary-300: #a7e2fe;
-  --color-primary-400: #82dafe;
-  --color-primary-500: #4dd2fe;
-  --color-primary-600: #13a5cc;
-  --color-primary-700: #0b7996;
-  --color-primary-800: #055267;
-  --color-primary-900: #012c38;
-  --color-primary-950: #011a23;
-}
+@import "./dark.css";
+@import "./light.css";
 
 @theme {
-  --color-surface: oklch(98.219% 0.00666 233.64);
-  --color-surface-50: oklch(100% 0 none);
-  --color-surface-100: oklch(100% 0 none);
-  --color-surface-200: oklch(100% 0 none);
-  --color-surface-300: oklch(100% 0 none);
-  --color-surface-400: oklch(100% 0 none);
-  --color-surface-500: oklch(98.219% 0.00666 233.64);
-  --color-surface-600: oklch(89.998% 0.03856 233.58);
-  --color-surface-700: oklch(81.72% 0.06886 235.41);
-  --color-surface-800: oklch(73.87% 0.09926 236.57);
-  --color-surface-900: oklch(66.239% 0.12641 239.86);
-  --color-surface-950: oklch(62.211% 0.12963 240.99);
 }
 
 @custom-variant dark (&:where(.dark, .dark *));
-:root {
-  --editor-icon-color: #0b7996; /* or any of your primary/surface tokens */
-}
 
-.dark {
-  --editor-icon-color: #ffffff; /* white icons in dark mode */
-}
-.ql-toolbar .ql-stroke {
-  stroke: #000000; /* your --color-primary-700 */
-}
 #app {
   width: 100vw;
   margin: 0 auto;

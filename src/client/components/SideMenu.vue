@@ -1,5 +1,6 @@
 <template>
   <Menu
+    data-bg="surface"
     :model="items"
     :pt="{
       root: {

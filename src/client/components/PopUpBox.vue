@@ -36,12 +36,18 @@ defineExpose({ setVisible });
       title: { class: 'text-xl font-bold' },
       mask: { class: 'bg-black/30' },
       root: {
-        class: 'bg-surface-600 w-1/2 h-3/4 p-5 rounded-xl shadow-xl',
+        class: 'bg-surface-400 w-1/2 h-3/4 p-5 rounded-xl shadow-xl',
       },
       headerActions: { class: 'w-fit ml-auto self-start' },
-      header: { class: 'mt-1 flex flex-row' },
+      header: { class: 'mb-5 flex flex-row' },
       content: { class: 'flex flex-col gap-2 grow' },
-      pcCloseButton: { root: { class: 'bg-transparent' } },
+      pcCloseButton: {
+        root: {
+          class: '!bg-transparent stroke-secondary-500',
+        },
+        icon: { class: 'text-secondary-500' },
+        label: { class: 'hidden' },
+      },
     }"
   >
     <InputText
@@ -63,9 +69,20 @@ defineExpose({ setVisible });
       id="postbody"
       :pt="{
         root: { class: 'grow bg-slate-100 stroke-black flex flex-col rounded-xl' },
-
         toolbar: { class: 'p-editor-toolbar ql-toolbar ql-snow  border rounded-t-xl' },
         content: { class: 'border-b border-r grow border-l rounded-b-xl' },
+        bold: { class: 'hover:bg-black/10 rounded-md' },
+        italic: { class: 'hover:bg-black/10 rounded-md' },
+        underline: { class: 'hover:bg-black/10 rounded-md' },
+        color: { class: 'hover:bg-black/10 rounded-md' },
+        background: { class: 'hover:bg-black/10 rounded-md' },
+        list: { class: 'hover:bg-black/10 rounded-md' },
+        select: { class: 'hover:bg-black/10 rounded-md' },
+        link: { class: 'hover:bg-black/10 rounded-md' },
+        image: { class: 'hover:bg-black/10 rounded-md' },
+        codeBlock: { class: 'hover:bg-black/10 rounded-md' },
+        clean: { class: 'hover:bg-black/10 rounded-md' },
+        header: { class: 'hover:bg-black/10 rounded-md' },
       }"
     />
 
@@ -84,3 +101,20 @@ defineExpose({ setVisible });
     </div>
   </Dialog>
 </template>
+
+<style>
+@reference "../assets/main.css";
+.ql-stroke {
+  @apply stroke-[1.25];
+}
+.ql-color-label.ql-fill {
+  @apply stroke-0;
+}
+.ql-picker-options {
+  @apply border rounded-xl p-2 shadow-xl  bg-slate-100;
+}
+
+.ql-font {
+  @apply hover:bg-black/10 rounded-md;
+}
+</style>

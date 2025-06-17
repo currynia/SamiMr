@@ -14,6 +14,7 @@ const postHoursAgo = Math.round(Math.abs(now.getTime() - pDate.getTime()) / (100
 <template>
   <Card
     class="postCard cursor-pointer"
+    data-bg="surface"
     :pt="{
       title: { class: 'font-bold text-2xl' },
       content: {
