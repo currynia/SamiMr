@@ -43,12 +43,5 @@
 @theme {
   --color-on-surface: #171c1f;
   --color-on-secondary: #ffffff;
-}
-
-[data-p-severity="secondary"] {
-  @apply bg-secondary-400 text-on-secondary;
-}
-
-[data-bg="surface"] {
-  @apply text-on-surface;
+  --color-outline: #70787d;
 }

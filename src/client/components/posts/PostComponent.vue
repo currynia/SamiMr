@@ -21,7 +21,8 @@ const postHoursAgo = Math.round(Math.abs(now.getTime() - pDate.getTime()) / (100
         class: 'text-xl',
       },
       body: {
-        class: 'shadow-md bg-surface-300 rounded-xl p-5 flex gap-5 flex-col hover:bg-surface-500',
+        class:
+          'shadow-md bg-surface-300 rounded-xl p-5 flex gap-5 flex-col hover:bg-surface-500 dark:bg-surface-dark-400 dark:hover:bg-surface-dark-500',
       },
       subtitle: { class: 'text-slate-500' },
       footer: { class: 'w-full' },

@@ -2,9 +2,6 @@
 @import "./dark.css";
 @import "./light.css";
 
-@theme {
-}
-
 @custom-variant dark (&:where(.dark, .dark *));
 
 #app {
@@ -15,4 +12,20 @@
   height: 100vh;
   padding: 0;
   background-color: var(--color-slate-50);
+}
+
+.dark #app {
+  background-color: var(--color-black);
+}
+
+[data-p-severity="secondary"] {
+  @apply bg-secondary-400 text-on-secondary fill-on-secondary stroke-on-secondary;
+}
+
+[data-bg="surface"] {
+  @apply text-on-surface dark:text-on-surface-dark;
+}
+
+* {
+  @apply dark:border-outline-dark border-outline;
 }

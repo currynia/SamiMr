@@ -4,9 +4,11 @@
     :model="items"
     :pt="{
       root: {
-        class: ' pr-0 pl-5 pd-5 border-solid border-r bg-surface-500',
+        class: ' pr-0 pl-5 pd-5 border-solid border-r bg-surface-500 dark:bg-surface-dark-500',
       },
-      item: { class: 'hover:bg-surface-600 p-3 pr-0 max-w-3/4 rounded-xl' },
+      item: {
+        class: 'hover:bg-surface-600 dark:hover:bg-surface-dark-400 p-3 pr-0 max-w-3/4 rounded-xl',
+      },
       submenuLabel: { class: 'mt-3' },
     }"
   >

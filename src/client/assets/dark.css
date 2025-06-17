@@ -1,1 +1,33 @@
-@import "tailwindcss";
+@theme {
+  --color-surface-dark: oklch(18.735% 0.00988 234.39);
+  --color-surface-dark-50: oklch(46.156% 0.03599 235.3);
+  --color-surface-dark-100: oklch(43.369% 0.03363 235.74);
+  --color-surface-dark-200: oklch(37.654% 0.02878 236.91);
+  --color-surface-dark-300: oklch(31.668% 0.02254 235.44);
+  --color-surface-dark-400: oklch(25.431% 0.01712 237.54);
+  --color-surface-dark-500: oklch(18.735% 0.00988 234.39);
+  --color-surface-dark-600: oklch(16.496% 0.00768 229.46);
+  --color-surface-dark-700: oklch(13.811% 0.00592 245.02);
+  --color-surface-dark-800: oklch(10.436% 0.00335 196.65);
+  --color-surface-dark-900: oklch(0% 0 none);
+  --color-surface-dark-950: oklch(0% 0 none);
+}
+@theme {
+  --color-primary-dark: oklch(82.097% 0.08185 225.73);
+  --color-primary-dark-50: oklch(100% 0 none);
+  --color-primary-dark-100: oklch(98.07% 0.00845 225.08);
+  --color-primary-dark-200: oklch(94.098% 0.02714 223.23);
+  --color-primary-dark-300: oklch(89.918% 0.04621 224.67);
+  --color-primary-dark-400: oklch(86.091% 0.0641 224.54);
+  --color-primary-dark-500: oklch(82.097% 0.08185 225.73);
+  --color-primary-dark-600: oklch(76.497% 0.10554 227.43);
+  --color-primary-dark-700: oklch(71.299% 0.12451 230.13);
+  --color-primary-dark-800: oklch(64.873% 0.12454 231.76);
+  --color-primary-dark-900: oklch(55.461% 0.10497 231.24);
+  --color-primary-dark-950: oklch(50.606% 0.09482 230.88);
+}
+@theme {
+  --color-on-surface-dark: #dee3e6;
+  --color-outline-dark: #8a9296;
+  --color-on-primary-dark: #003544;
+}
