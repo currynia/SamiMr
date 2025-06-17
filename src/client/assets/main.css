@@ -19,7 +19,7 @@
 }
 
 [data-p-severity="secondary"] {
-  @apply bg-secondary-400 text-on-secondary fill-on-secondary stroke-on-secondary;
+  @apply bg-tertiary-400 text-on-secondary fill-on-secondary stroke-on-secondary;
 }
 
 [data-bg="surface"] {

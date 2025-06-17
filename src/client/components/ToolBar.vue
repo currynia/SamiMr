@@ -14,7 +14,7 @@ import { InputText } from "primevue";
         class:
           'flex flex-row pl-5 pr-6 pt-1 border-b items-center gap-40 bg-surface-600 dark:bg-surface-dark-600',
       },
-
+      start: { class: 'grid grid-cols-[20%_80%] gap-3' },
       center: { class: 'grow' },
       end: {
         class: ' ml-auto ',
@@ -23,7 +23,7 @@ import { InputText } from "primevue";
   >
     <template #start>
       <IconApp />
-      <span class="text-xl font-semibold">Sami<span class="text-dark">Mr</span></span>
+      <span class="text-xl mb-auto mt-auto font-semibold">SamiMr</span>
     </template>
     <template #center>
       <div class="p-1 pl-3 outline-1 rounded-xl bg-surface-200 dark:bg-surface-dark-400">

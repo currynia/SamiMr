@@ -4,10 +4,13 @@
     :model="items"
     :pt="{
       root: {
-        class: ' pr-0 pl-5 pd-5 border-solid border-r bg-surface-500 dark:bg-surface-dark-500',
+        class: ' pr-0 pl-5 pd-5 border-r bg-surface-500 dark:bg-surface-dark-500',
       },
       item: {
         class: 'hover:bg-surface-600 dark:hover:bg-surface-dark-400 p-3 pr-0 max-w-3/4 rounded-xl',
+      },
+      separator: {
+        class: 'h-1 border-t border-black -ml-5 mt-3',
       },
       submenuLabel: { class: 'mt-3' },
     }"

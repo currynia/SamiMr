@@ -37,14 +37,20 @@ console.log(import.meta.env.MODE);
 if (import.meta.env.MODE == "development") {
   postsManager.addPost(
     new Post("hello", "I am emily.", "emily Woo", new Date(), 1),
-    new Post("Kranji Primary School", "I am Tay Apichiya.", "Tay Apichiya", new Date(), 1)
+    new Post(
+      "Kranji Primary School",
+      "I am Tay Apichiya Apichiya am Tay Apichiya Apichiya am Tay Apichiya Apichiya am Tay Apichiya Apichiya am Tay Apichiya Apichiya am Tay Apichiya Apichiya am Tay Apichiya Apichiya am Tay Apichiya Apichiya am Tay Apichiya Apichiya am Tay Apichiya Apichiya am Tay Apichiya Apichiya.",
+      "Tay Apichiya",
+      new Date(),
+      1
+    )
   );
 }
 </script>
 
 <template>
-  <div @scroll="onScroll" class="flex flex-col gap-5 overflow-auto p-3">
-    <li v-for="post in posts" :key="post.body" style="list-style-type: none">
+  <div @scroll="onScroll" class="overflow-auto">
+    <li v-for="post in posts" :key="post.body" class="max-h-7/8 list-none border-b-1 border-r-1">
       <PostComponent :post="post" @click="viewFullPost(post)" />
     </li>
   </div>

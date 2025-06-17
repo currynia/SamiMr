@@ -44,9 +44,9 @@ defineExpose({ setVisible });
       content: { class: 'flex flex-col gap-2 grow' },
       pcCloseButton: {
         root: {
-          class: '!bg-transparent stroke-secondary-300',
+          class: '!bg-transparent stroke-secondary-300 ',
         },
-        icon: { class: 'text-secondary-500' },
+        icon: { class: 'text-black' },
         label: { class: 'hidden' },
       },
     }"

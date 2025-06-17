@@ -30,10 +30,10 @@ const session = Session.getSessionInstance();
           isPopUpBoxVisible = true;
           popUpBox?.setVisible(true);
         "
-        class="grow-1"
+        class="w-2/10"
       />
-      <PostFeed class="grow-4" />
-      <div class="grow-4"></div>
+      <PostFeed class="max-w-3/8 w-3/8" />
+      <div class="w-1/10"></div>
     </div>
   </div>
   <PopUpBox

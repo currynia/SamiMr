@@ -13,16 +13,15 @@ const postHoursAgo = Math.round(Math.abs(now.getTime() - pDate.getTime()) / (100
 
 <template>
   <Card
-    class="postCard cursor-pointer"
+    class="postCard cursor-pointer h-full bg-secondary-100 hover:bg-secondary-200/80"
     data-bg="surface"
     :pt="{
-      title: { class: 'font-bold text-2xl' },
+      title: { class: 'font-bold text-tertiary-800 text-2xl' },
       content: {
-        class: 'text-xl',
+        class: 'text-xl h-full',
       },
       body: {
-        class:
-          'shadow-md bg-surface-300 rounded-xl p-5 flex gap-5 flex-col hover:bg-surface-500 dark:bg-surface-dark-400 dark:hover:bg-surface-dark-500',
+        class: ' p-3 h-full text-wrap flex gap-5 flex-col',
       },
       subtitle: { class: 'text-slate-500' },
       footer: { class: 'w-full' },
