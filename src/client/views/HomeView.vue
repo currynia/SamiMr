@@ -23,15 +23,16 @@ const session = Session.getSessionInstance();
 <template>
   <div class="block h-full max-h-full">
     <ToolBar class="h-1/8" />
-    <div class="w-full h-7/8 flex flex-row overflow-auto">
+    <div class="w-full h-7/8 flex flex-row overflow-auto gap-3">
       <SideMenu
         v-if="session.isAuthenticated.value"
         @create-post="
           isPopUpBoxVisible = true;
           popUpBox?.setVisible(true);
         "
-        class="w-2/10"
+        class="w-2/10 mt-6"
       />
+
       <PostFeed class="max-w-3/8 w-3/8" />
       <div class="w-1/10"></div>
     </div>

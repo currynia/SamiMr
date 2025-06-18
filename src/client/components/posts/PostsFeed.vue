@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { type Ref } from "vue";
+import { computed, type Ref } from "vue";
 import Post from "./post";
 import PostsManager from "./postsManager";
 import PostComponent from "./PostComponent.vue";
@@ -39,19 +39,28 @@ if (import.meta.env.MODE == "development") {
     new Post("hello", "I am emily.", "emily Woo", new Date(), 1),
     new Post(
       "Kranji Primary School",
-      "I am Tay Apichiya Apichiya am Tay Apichiya Apichiya am Tay Apichiya Apichiya am Tay Apichiya Apichiya am Tay Apichiya Apichiya am Tay Apichiya Apichiya am Tay Apichiya Apichiya am Tay Apichiya Apichiya am Tay Apichiya Apichiya am Tay Apichiya Apichiya am Tay Apichiya Apichiya.",
+      "I am Tay Apichiya Apichiya am Tay Apichiya Apichiya am Tay Apichiya Apichiya am Tay Apichiya Apichiya am Tay Apichiya Apichiya am Tay Apichiya Apichiya am Tay Apichiya Apichiya am Tay Apichiya Apichiya am Tay Apichiya Apichiya am Tay Apichiya Apichiya am Tay Apichiyapichiya.",
       "Tay Apichiya",
       new Date(),
       1
     )
   );
 }
+
+const backgroundColor = (index: number) => ({
+  "bg-secondary-500 hover:bg-secondary-600": index % 2 === 0,
+  "bg-tertiary-400 hover:bg-tertiary-500": index % 2 !== 0,
+  "text-black": true,
+});
 </script>
 
 <template>
-  <div @scroll="onScroll" class="overflow-auto">
-    <li v-for="post in posts" :key="post.body" class="max-h-7/8 list-none border-b-1 border-r-1">
-      <PostComponent :post="post" @click="viewFullPost(post)" />
-    </li>
+  <div class="block overflow-auto">
+    <p class="text-xl font-bold ml-2 mb-2">Feeds</p>
+    <div @scroll="onScroll">
+      <li v-for="(post, index) in posts" :key="post.body" class="max-h-7/8 mb-3 list-none">
+        <PostComponent :class="backgroundColor(index)" :post="post" @click="viewFullPost(post)" />
+      </li>
+    </div>
   </div>
 </template>

@@ -31,13 +31,12 @@ defineExpose({ setVisible });
   <Dialog
     v-model:visible="isVisible"
     modal
-    data-bg="surface"
     header="Create post"
     :pt="{
       title: { class: 'text-xl font-bold' },
-      mask: { class: 'bg-black/30' },
+      mask: { class: 'bg-black/10' },
       root: {
-        class: 'bg-surface-400 w-1/2 h-3/4 p-5 rounded-xl shadow-xl dark:bg-surface-dark-500',
+        class: 'w-1/2 h-3/4 p-5 rounded-xl shadow-xl bg-slate-100 dark:bg-black',
       },
       headerActions: { class: 'w-fit ml-auto self-start' },
       header: { class: 'mb-5 flex flex-row' },
@@ -60,7 +59,7 @@ defineExpose({ setVisible });
       :unstyled="false"
       :pt="{
         root: {
-          class: 'bg-slate-100 dark:bg-surface-dark-500 rounded-xl border p-2 pl-3 ',
+          class: 'bg-slate-100 dark:bg-black dark:text-white rounded-xl border p-2 pl-3 ',
         },
       }"
     />
@@ -72,22 +71,22 @@ defineExpose({ setVisible });
       :pt="{
         root: {
           class:
-            'grow bg-slate-100 stroke-black dark:stroke-white dark:bg-surface-dark-500 flex flex-col rounded-xl',
+            'grow bg-slate-100 dark:bg-black stroke-black dark:stroke-white flex flex-col rounded-xl',
         },
         toolbar: { class: 'p-editor-toolbar ql-toolbar ql-snow  border rounded-t-xl' },
         content: { class: 'border-b border-r grow border-l rounded-b-xl' },
-        bold: { class: 'hover:bg-black/10 rounded-md' },
-        italic: { class: 'hover:bg-black/10 rounded-md' },
-        underline: { class: 'hover:bg-black/10 rounded-md' },
-        color: { class: 'hover:bg-black/10 rounded-md' },
-        background: { class: 'hover:bg-black/10 rounded-md' },
-        list: { class: 'hover:bg-black/10 rounded-md' },
-        select: { class: 'hover:bg-black/10 rounded-md' },
-        link: { class: 'hover:bg-black/10 rounded-md' },
-        image: { class: 'hover:bg-black/10 rounded-md' },
-        codeBlock: { class: 'hover:bg-black/10 rounded-md' },
-        clean: { class: 'hover:bg-black/10 rounded-md' },
-        header: { class: 'hover:bg-black/10 rounded-md dark:text-white' },
+        bold: { class: 'hover:bg-black/10 dark:hover:bg-white/20 rounded-md' },
+        italic: { class: 'hover:bg-black/10 dark:hover:bg-white/20 rounded-md' },
+        underline: { class: 'hover:bg-black/10 dark:hover:bg-white/20 rounded-md' },
+        color: { class: 'hover:bg-black/10 dark:hover:bg-white/20 rounded-md' },
+        background: { class: 'hover:bg-black/10 dark:hover:bg-white/20 rounded-md' },
+        list: { class: 'hover:bg-black/10 dark:hover:bg-white/20 rounded-md' },
+        select: { class: 'hover:bg-black/10 dark:hover:bg-white/20 rounded-md' },
+        link: { class: 'hover:bg-black/10 dark:hover:bg-white/20 rounded-md' },
+        image: { class: 'hover:bg-black/10 dark:hover:bg-white/20 rounded-md' },
+        codeBlock: { class: 'hover:bg-black/10 dark:hover:bg-white/20 rounded-md' },
+        clean: { class: 'hover:bg-black/10 dark:hover:bg-white/20 rounded-md' },
+        header: { class: 'hover:bg-black/10 dark:hover:bg-white/20 rounded-md dark:text-white' },
       }"
     />
 
@@ -116,13 +115,13 @@ defineExpose({ setVisible });
   @apply stroke-0;
 }
 .ql-picker-options {
-  @apply border rounded-xl p-2 shadow-xl  bg-slate-100 dark:bg-surface-dark-500 dark:text-on-surface-dark;
+  @apply border rounded-xl p-2 shadow-xl  bg-slate-100  dark:text-on-surface-dark dark:bg-black;
 }
 
-.ql-font {
-  @apply hover:bg-black/10 rounded-md;
+.ql-font .ql-picker-item .ql-selected {
+  @apply hover:bg-black/10 dark:hover:bg-white/20 rounded-md;
 }
 .ql-picker-label {
-  @apply dark:text-on-surface-dark;
+  @apply dark:text-white dark:hover:bg-white/20 rounded-md;
 }
 </style>

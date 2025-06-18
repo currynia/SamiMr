@@ -1,18 +1,4 @@
 @theme {
-  --color-surface-dark: oklch(18.735% 0.00988 234.39);
-  --color-surface-dark-50: oklch(46.156% 0.03599 235.3);
-  --color-surface-dark-100: oklch(43.369% 0.03363 235.74);
-  --color-surface-dark-200: oklch(37.654% 0.02878 236.91);
-  --color-surface-dark-300: oklch(31.668% 0.02254 235.44);
-  --color-surface-dark-400: oklch(25.431% 0.01712 237.54);
-  --color-surface-dark-500: oklch(18.735% 0.00988 234.39);
-  --color-surface-dark-600: oklch(16.496% 0.00768 229.46);
-  --color-surface-dark-700: oklch(13.811% 0.00592 245.02);
-  --color-surface-dark-800: oklch(10.436% 0.00335 196.65);
-  --color-surface-dark-900: oklch(0% 0 none);
-  --color-surface-dark-950: oklch(0% 0 none);
-}
-@theme {
   --color-primary-dark: oklch(82.097% 0.08185 225.73);
   --color-primary-dark-50: oklch(100% 0 none);
   --color-primary-dark-100: oklch(98.07% 0.00845 225.08);

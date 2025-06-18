@@ -11,19 +11,15 @@
   font-weight: normal;
   height: 100vh;
   padding: 0;
-  background-color: var(--color-slate-50);
+  background-color: var(--color-slate-100);
 }
 
 .dark #app {
-  background-color: var(--color-black);
+  @apply bg-slate-950 text-slate-100;
 }
 
 [data-p-severity="secondary"] {
   @apply bg-tertiary-400 text-on-secondary fill-on-secondary stroke-on-secondary;
-}
-
-[data-bg="surface"] {
-  @apply text-on-surface dark:text-on-surface-dark;
 }
 
 * {
