@@ -30,7 +30,7 @@ const postHoursAgo = Math.round(Math.abs(now.getTime() - pDate.getTime()) / (100
       <img src="../../assets/profile_icon.svg" class="rounded-full border-1 w-10 h-10" />
       <div class="block">
         <span>{{ post.authorName }}</span>
-        <p class="text-slate-500 text-xs">{{ postHoursAgo }} hours ago</p>
+        <p class="text-slate-500 text-x font-light">{{ postHoursAgo }} hours ago</p>
       </div>
     </template>
     <template #subtitle>

@@ -11,19 +11,17 @@ import { Session } from "@/session";
 const PopUpBox = defineAsyncComponent(() => import("@/components/PopUpBox.vue"));
 const popUpBox = useTemplateRef<typeof PopUpBox>("popUpBox");
 const isPopUpBoxVisible: Ref<boolean> = ref(false);
-
+const session = Session.getSessionInstance();
 const savePostCallback = async (s: { title: string; body: string }) => {
   const p: PostDto = new Post(s.title, s.body, "", new Date()); //placeholder username
   postJsonFetch("/api/post/save", p);
 };
-
-const session = Session.getSessionInstance();
 </script>
 
 <template>
   <div class="block h-full max-h-full">
     <ToolBar class="h-1/8" />
-    <div class="w-full h-7/8 flex flex-row overflow-auto gap-3">
+    <div class="w-full h-7/8 flex flex-row overflow-auto gap-3 p-3 pt-5">
       <SideMenu
         v-if="session.isAuthenticated.value"
         @create-post="
@@ -33,7 +31,7 @@ const session = Session.getSessionInstance();
         class="w-2/10 mt-6"
       />
 
-      <PostFeed class="max-w-3/8 w-3/8" />
+      <PostFeed :class="{ 'w-5/8': !session.isAuthenticated.value }" class="w-3/8" />
       <div class="w-1/10"></div>
     </div>
   </div>

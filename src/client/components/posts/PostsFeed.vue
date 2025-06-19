@@ -55,7 +55,7 @@ const backgroundColor = (index: number) => ({
 </script>
 
 <template>
-  <div class="block overflow-auto">
+  <div class="block overflow-auto border-none">
     <p class="text-xl font-bold ml-2 mb-2">Feeds</p>
     <div @scroll="onScroll">
       <li v-for="(post, index) in posts" :key="post.body" class="max-h-7/8 mb-3 list-none">
