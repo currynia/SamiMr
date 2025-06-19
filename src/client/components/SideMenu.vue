@@ -5,11 +5,10 @@
       root: {
         class: ' pr-0 pl-5 pd-5 ',
       },
-      item: {
-        class: ' p-3 pr-0 max-w-3/4 rounded-xl hover:bg-primary-500 dark:hover:text-black',
-      },
-      separator: {
-        class: 'h-1 border-t border-black -ml-5 mt-3',
+
+      itemContent: {
+        class:
+          'w-fit h-fit p-3 max-w-6/10 min-w-6/10 rounded-xl hover:bg-primary-500 dark:hover:text-black w-fit ',
       },
     }"
   >
@@ -26,7 +25,6 @@
 <script setup lang="ts">
 import { ref } from "vue";
 import Menu from "primevue/menu";
-import { darkModeIcon, toggleDarkMode } from "@/util";
 
 const emit = defineEmits(["createPost"]);
 const items = ref([
@@ -43,7 +41,7 @@ const items = ref([
         label: "Settings",
         icon: "pi pi-cog",
       },
-      { label: "Toggle dark Mode", icon: darkModeIcon, command: toggleDarkMode },
+
       {
         label: "Messages",
         icon: "pi pi-inbox",

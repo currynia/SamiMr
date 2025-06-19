@@ -4,6 +4,9 @@ import Button from "primevue/button";
 
 import { darkModeIcon, toggleDarkMode } from "@/util";
 import { InputText } from "primevue";
+import { Session } from "@/session";
+
+const isAuthenticated = Session.getSessionInstance().isAuthenticated;
 </script>
 
 <template>
@@ -24,7 +27,7 @@ import { InputText } from "primevue";
       <img src="../assets/logo.svg" class="h-20 inline-block mt-3" />
       <span class="text-xl -ml-3 mb-auto mt-auto font-semibold">SamiMr</span>
     </template>
-    <template #center>
+    <!-- <template #center>
       <div class="p-1 pl-3 outline-1 rounded-xl">
         <InputIcon class="flex flex-row items-center-safe gap-3 pr-1">
           <i class="pi pi-search" />
@@ -32,11 +35,11 @@ import { InputText } from "primevue";
           <InputText class="outline-0 grow" placeholder="Search" />
         </InputIcon>
       </div>
-    </template>
+    </template> -->
     <template #end>
-      <Button @click="$router.push('/auth/login')" label="Login" />
-      <Button @click="$router.push('/auth/register')" label="Sign up" />
-      <i :class="darkModeIcon" @click="toggleDarkMode()"></i>
+      <Button v-if="!isAuthenticated" @click="$router.push('/auth/login')" label="Login" />
+      <Button v-if="!isAuthenticated" @click="$router.push('/auth/register')" label="Sign up" />
+      <i class="text-2xl" :class="darkModeIcon" @click="toggleDarkMode()"></i>
     </template>
   </Toolbar>
 </template>

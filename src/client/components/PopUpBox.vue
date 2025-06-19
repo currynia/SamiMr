@@ -33,7 +33,7 @@ defineExpose({ setVisible });
     modal
     header="Create post"
     :pt="{
-      title: { class: 'text-xl font-bold' },
+      title: { class: 'text-xl font-bold dark:text-white ml-1' },
       mask: { class: 'bg-black/10' },
       root: {
         class: 'w-1/2 h-3/4 p-5 rounded-xl shadow-xl bg-slate-100 dark:bg-black',
@@ -71,7 +71,7 @@ defineExpose({ setVisible });
       :pt="{
         root: {
           class:
-            'grow bg-slate-100 dark:bg-black stroke-black dark:stroke-white flex flex-col rounded-xl',
+            'grow bg-slate-100 dark:bg-black stroke-black dark:stroke-white flex flex-col rounded-xl dark:text-white',
         },
         toolbar: { class: 'p-editor-toolbar ql-toolbar ql-snow  border rounded-t-xl' },
         content: { class: 'border-b border-r grow border-l rounded-b-xl' },

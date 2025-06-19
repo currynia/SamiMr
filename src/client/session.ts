@@ -11,6 +11,4 @@ export class Session {
     }
     return Session.session;
   }
-
-
 }

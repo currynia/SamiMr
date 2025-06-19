@@ -25,6 +25,7 @@ async function onFormSubmit(e: FormSubmitEvent<Record<string, unknown>>) {
       isLoginSuccessful.value = true;
       const payload = await res.json();
       Session.getSessionInstance().user = payload;
+      Session.getSessionInstance().isAuthenticated.value = true;
       router.push("/");
     } else if (res.status == 401) {
       isLoginSuccessful.value = false;
@@ -44,7 +45,6 @@ const resolver = ref(
 </script>
 
 <template>
-  <ToolBar />
   <div class="mt-10">
     <div
       class="bg-surface-0 dark:bg-surface-900 p-8 md:p-12 shadow-sm rounded-2xl w-full max-w-xl mx-auto flex flex-col gap-8"
@@ -60,7 +60,10 @@ const resolver = ref(
             <span class="text-surface-700 dark:text-surface-200 leading-normal"
               >Don't have an account?</span
             >
-            <a class="text-primary font-medium ml-1 cursor-pointer hover:text-primary-emphasis"
+            <a
+              href="#"
+              @click="$router.push('/auth/register')"
+              class="text-primary font-medium ml-1 cursor-pointer hover:text-primary-emphasis"
               >Create today!</a
             >
           </div>
@@ -98,7 +101,8 @@ const resolver = ref(
             class="flex flex-col sm:flex-row items-start sm:items-center justify-between w-full gap-3 sm:gap-0"
           >
             <div class="flex items-center gap-2">
-              <Checkbox id="rememberme1" v-model="checked1" :binary="true" />
+              <input v-model="checked1" type="checkbox" id="rememberme1" />
+
               <label for="rememberme1" class="text-surface-900 dark:text-surface-0 leading-normal"
                 >Remember me</label
               >
@@ -111,13 +115,14 @@ const resolver = ref(
         <Button
           :loading="isSubmitting"
           label="Sign In"
-          icon="pi pi-user"
           class="w-full py-2 rounded-lg flex gap-2 mt-7"
           type="submit"
+          :pt="{
+            label: {
+              class: 'ml-auto mr-auto',
+            },
+          }"
         >
-          <template #icon>
-            <i class="pi pi-user !text-base !leading-normal" />
-          </template>
         </Button>
         <Message v-if="!isLoginSuccessful" severity="error" size="small" variant="simple">
           Username or password is incorrect.
