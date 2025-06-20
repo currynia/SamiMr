@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, type Ref } from "vue";
+import { type Ref } from "vue";
 import Post from "./post";
 import PostsManager from "./postsManager";
 import PostComponent from "./PostComponent.vue";
@@ -43,7 +43,13 @@ if (import.meta.env.MODE == "development") {
       "Tay Apichiya",
       new Date(),
       1
-    )
+    ),
+    new Post("hello", "I am emily.", "emily Woo", new Date(), 1),
+    new Post("hello", "I am emily.", "emily Woo", new Date(), 1),
+    new Post("hello", "I am emily.", "emily Woo", new Date(), 1),
+    new Post("hello", "I am emily.", "emily Woo", new Date(), 1),
+    new Post("hello", "I am emily.", "emily Woo", new Date(), 1),
+    new Post("hello", "I am emily.", "emily Woo", new Date(), 1)
   );
 }
 
@@ -55,12 +61,12 @@ const backgroundColor = (index: number) => ({
 </script>
 
 <template>
-  <div class="block overflow-auto border-none">
-    <p class="text-xl font-bold ml-2 mb-2">Feeds</p>
-    <div @scroll="onScroll">
-      <li v-for="(post, index) in posts" :key="post.body" class="max-h-7/8 mb-3 list-none">
+  <div class="block border-none max-h-full">
+    <p class="text-xl font-bold ml-2 mb-2 max-h-1/16">Feeds</p>
+    <div @scroll="onScroll" class="max-h-15/16 overflow-auto">
+      <div v-for="(post, index) in posts" :key="post.body" class="mb-3 list-none">
         <PostComponent :class="backgroundColor(index)" :post="post" @click="viewFullPost(post)" />
-      </li>
+      </div>
     </div>
   </div>
 </template>

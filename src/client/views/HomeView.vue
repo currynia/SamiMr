@@ -21,7 +21,7 @@ const savePostCallback = async (s: { title: string; body: string }) => {
 <template>
   <div class="block h-full max-h-full">
     <ToolBar class="h-1/8" />
-    <div class="w-full h-7/8 flex flex-row overflow-auto gap-3 p-3 pt-5">
+    <div class="w-full h-7/8 flex flex-row max-h-7/8 gap-3 p-3 pt-5">
       <SideMenu
         v-if="session.isAuthenticated.value"
         @create-post="

@@ -9,7 +9,7 @@ import { z } from "zod";
 import { onBeforeRouteLeave } from "vue-router";
 
 const formSubmitError = ref<{ isRegisterSuccessful: boolean; msg?: string }>({
-  isRegisterSuccessful: true,
+  isRegisterSuccessful: false,
 });
 const initialValues = ref({
   username: "",

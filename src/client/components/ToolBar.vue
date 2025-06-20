@@ -24,8 +24,10 @@ const isAuthenticated = Session.getSessionInstance().isAuthenticated;
     }"
   >
     <template #start>
-      <img src="../assets/logo.svg" class="h-20 inline-block mt-3" />
-      <span class="text-xl -ml-3 mb-auto mt-auto font-semibold">SamiMr</span>
+      <div class="cursor-pointer" @click="$router.push('/')">
+        <img src="../assets/logo.svg" class="h-20 inline-block mt-3" />
+        <span class="text-xl -ml-3 mb-auto mt-auto font-semibold">SamiMr</span>
+      </div>
     </template>
     <template #end>
       <Button v-if="!isAuthenticated" @click="$router.push('/auth/login')" label="Login" />
