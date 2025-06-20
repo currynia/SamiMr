@@ -69,7 +69,7 @@ const resolver = ref(
           </div>
         </div>
       </div>
-      <Form :resolver="resolver" @submit="(e) => onFormSubmit(e)">
+      <Form :resolver="resolver" @submit="onFormSubmit">
         <div class="flex flex-col gap-6 w-full">
           <div class="flex flex-col gap-2 w-full">
             <label

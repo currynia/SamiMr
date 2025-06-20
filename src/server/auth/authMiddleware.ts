@@ -9,7 +9,6 @@ export const authMiddleware = async (req: Request, res: Response, next: NextFunc
     res.locals.payload = await verify(token);
     next();
   } catch (e) {
-    console.log(e);
-    res.status(401).send();
+    next(""); //skip all the way to fallback middleware
   }
 };

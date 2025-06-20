@@ -26,7 +26,12 @@ export const register = async (req: Request, res: Response) => {
     await registerController(db, req.body.username, req.body.password);
     res.status(200).send();
   } catch (e) {
-    console.log(e);
-    res.status(409).send();
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    if ((e as any).code === "23505") {
+      res.status(409).send();
+
+      return;
+    }
+    res.status(500).send();
   }
 };

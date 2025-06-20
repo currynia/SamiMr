@@ -1,29 +1,43 @@
 <script setup lang="ts">
-import { Form, type FormResolverOptions, type FormSubmitEvent } from "@primevue/forms";
+import { Form, type FormSubmitEvent } from "@primevue/forms";
 import { ref } from "vue";
 import Message from "primevue/message";
 import Button from "primevue/button";
 import InputText from "primevue/inputtext";
 import { zodResolver } from "@primevue/forms/resolvers/zod";
 import { z } from "zod";
+import { onBeforeRouteLeave } from "vue-router";
 
+const formSubmitError = ref<{ isRegisterSuccessful: boolean; msg?: string }>({
+  isRegisterSuccessful: true,
+});
 const initialValues = ref({
   username: "",
   password: "",
   confirmPassword: "",
 });
+const isSubmitting = ref(false);
 
-function onFormSubmit(e: FormSubmitEvent<Record<string, never>>): undefined {
+async function onFormSubmit(e: FormSubmitEvent<Record<string, unknown>>): Promise<void> {
   if (e.valid) {
     const username = e.states.username.value;
     const password = e.states.password.value;
-    fetch("/api/auth/register", {
+    const res = await fetch("/api/auth/register", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ username: username, password: password }),
     });
+    console.log(res.status);
+    if (res.status == 409) {
+      formSubmitError.value = { isRegisterSuccessful: false, msg: "Username already in use" };
+    } else if (res.status == 500) {
+      formSubmitError.value = { isRegisterSuccessful: false, msg: "Internal server error occured" };
+    } else if (res.status == 200) {
+      formSubmitError.value = { isRegisterSuccessful: true };
+    } else {
+      formSubmitError.value = { isRegisterSuccessful: false, msg: "Unknown error occured" };
+    }
   }
-  console.log(e);
 }
 
 const resolver = ref(
@@ -40,10 +54,36 @@ const resolver = ref(
       })
   )
 );
+
+onBeforeRouteLeave((to, from, next) => {
+  formSubmitError.value = { isRegisterSuccessful: false };
+  next();
+});
 </script>
 
 <template>
-  <div class="mt-10">
+  <div v-if="formSubmitError.isRegisterSuccessful">
+    <div class="flex flex-col items-center gap-2 w-full mt-10">
+      <div
+        class="text-surface-900 dark:text-surface-0 text-2xl font-semibold leading-tight text-center w-full"
+      >
+        Registration successful!
+      </div>
+      <div class="text-center w-full">
+        <span class="text-surface-700 dark:text-surface-200 leading-normal"
+          >Click
+          <a
+            @click="$router.push('/auth/login')"
+            class="text-primary font-medium cursor-pointer hover:text-primary-emphasis"
+            >here</a
+          >
+          to sign in!</span
+        >
+      </div>
+    </div>
+  </div>
+
+  <div v-if="!formSubmitError.isRegisterSuccessful" class="mt-10">
     <div
       class="bg-surface-0 dark:bg-surface-900 p-8 md:p-12 shadow-sm rounded-2xl w-full max-w-xl mx-auto flex flex-col gap-8"
     >
@@ -132,16 +172,26 @@ const resolver = ref(
             >
           </div>
         </div>
+
         <Button
           class="w-full py-2 rounded-lg flex gap-2 mt-7"
           type="submit"
           label="Register"
+          :loading="isSubmitting"
           :pt="{
             label: {
               class: 'ml-auto mr-auto',
             },
           }"
         />
+        <Message
+          v-if="!formSubmitError.isRegisterSuccessful"
+          severity="error"
+          size="small"
+          variant="simple"
+        >
+          {{ formSubmitError.msg }}
+        </Message>
       </Form>
     </div>
   </div>

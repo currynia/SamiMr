@@ -21,7 +21,9 @@
 [data-p-severity="secondary"] {
   @apply bg-tertiary-500 text-on-secondary fill-on-secondary stroke-on-secondary hover:bg-tertiary-500/80;
 }
-
+[data-p*="error"] {
+  @apply text-red-500;
+}
 * {
   @apply dark:border-outline-dark border-outline;
 }
