@@ -1,19 +1,21 @@
 <script setup lang="ts">
 import type Post from "./post";
 import Card from "primevue/card";
-
+import { Button } from "primevue";
 interface Props {
   post: Post;
+  isFullPost?: boolean;
 }
 const props = defineProps<Props>();
 const now = new Date();
 const pDate = new Date(props.post.dateTime);
 const postHoursAgo = Math.round(Math.abs(now.getTime() - pDate.getTime()) / (1000 * 60 * 60));
+defineEmits(["startComment"]);
 </script>
 
 <template>
   <Card
-    class="postCard cursor-pointer h-full rounded-3xl"
+    class="postCard rounded-3xl"
     :pt="{
       title: { class: 'font-bold text-black text-m flex flex-row gap-2' },
       content: {
@@ -36,8 +38,10 @@ const postHoursAgo = Math.round(Math.abs(now.getTime() - pDate.getTime()) / (100
     <template #subtitle>
       {{ post.title }}
     </template>
-    <template #footer>
-      <div class="w-fit ml-auto"></div>
+    <template #footer v-if="props.isFullPost">
+      <div class="w-fit ml-auto">
+        <Button label="Comment" severity="secondary" @click="$emit('startComment')" />
+      </div>
     </template>
     <template #content>
       <div v-html="post.body" class="postContent"></div>

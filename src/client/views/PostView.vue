@@ -1,12 +1,11 @@
 <script setup lang="ts">
 import type Post from "@/components/posts/post";
-import PostFull from "@/components/posts/PostFull.vue";
 import PostsManager from "@/components/posts/postsManager";
 import { defineAsyncComponent, ref, useTemplateRef, type Ref } from "vue";
 import { Comment } from "@/components/comments/comment";
-import type { CommentDto } from "@dto/commentDto";
 import { postCommentManger } from "@/components/comments/postCommentManager";
-import { display } from "@primeuix/themes/aura/inplace";
+import ToolBar from "@/components/ToolBar.vue";
+import PostComponent from "@/components/posts/PostComponent.vue";
 
 const PopUpBox = defineAsyncComponent(() => import("@/components/PopUpBox.vue"));
 const postsManager = PostsManager.getPostManager();
@@ -29,8 +28,12 @@ const savePostCallback = async (s: { title: string; body: string }) => {
 </script>
 
 <template>
-  <PostFull
-    :display-post="displayPost"
+  <ToolBar />
+
+  <PostComponent
+    :post="displayPost"
+    :is-full-post="true"
+    class="h-fit bg-primary-200 m-5"
     @start-comment="
       isPopUpBoxVisible = true;
       popUpBox?.setVisible(true);

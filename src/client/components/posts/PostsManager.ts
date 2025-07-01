@@ -1,6 +1,6 @@
 import type { PostDto } from "@dto/postDto";
 import Post from "./post";
-import { ref, type Ref } from 'vue';
+import { ref, type Ref } from "vue";
 class PostsManager {
   private posts: Ref<PostDto[]> = ref([]);
   private static manager: PostsManager;
@@ -18,7 +18,6 @@ class PostsManager {
       this.posts.value.unshift(p);
     }
   }
-
 
   getPosts(): Ref<Post[]> {
     return this.posts;
@@ -45,7 +44,6 @@ class PostsManager {
   }
 
   getNewestPost(): PostDto | undefined {
-
     return this.posts.value[0];
   }
 }

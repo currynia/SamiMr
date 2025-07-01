@@ -56,7 +56,6 @@ if (import.meta.env.MODE == "development") {
 const backgroundColor = (index: number) => ({
   "bg-secondary-500 hover:bg-secondary-600": index % 2 === 0,
   "bg-tertiary-400 hover:bg-tertiary-500": index % 2 !== 0,
-  "text-black": true,
 });
 </script>
 
@@ -64,7 +63,11 @@ const backgroundColor = (index: number) => ({
   <div class="block border-none max-h-full">
     <p class="text-xl font-bold ml-2 mb-2 max-h-1/16">Feeds</p>
     <div @scroll="onScroll" class="max-h-15/16 overflow-auto">
-      <div v-for="(post, index) in posts" :key="post.body" class="mb-3 list-none">
+      <div
+        v-for="(post, index) in posts"
+        :key="post.body"
+        class="cursor-pointer mb-3 list-none h-full"
+      >
         <PostComponent :class="backgroundColor(index)" :post="post" @click="viewFullPost(post)" />
       </div>
     </div>
