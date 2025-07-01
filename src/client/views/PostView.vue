@@ -14,7 +14,7 @@ const displayPost: Post = postsManager.getViewPost();
 const postComment = postCommentManger.function().getPostComment(displayPost.postId!);
 const isPopUpBoxVisible: Ref<boolean> = ref(false);
 
-const savePostCallback = async (s: { title: string; body: string }) => {
+const saveCommentCallback = async (s: { title: string; body: string }) => {
   const comment: Comment = new Comment(displayPost.postId!, s.body, 1);
   const res: Response = await fetch("/api/post/savecomment", {
     method: "POST",
@@ -33,7 +33,7 @@ const savePostCallback = async (s: { title: string; body: string }) => {
   <PostComponent
     :post="displayPost"
     :is-full-post="true"
-    class="h-fit bg-primary-200 m-5"
+    class="h-fit bg-primary-200 m-5 text-black"
     @start-comment="
       isPopUpBoxVisible = true;
       popUpBox?.setVisible(true);
@@ -45,7 +45,7 @@ const savePostCallback = async (s: { title: string; body: string }) => {
   <PopUpBox
     v-if="isPopUpBoxVisible"
     ref="popUpBox"
-    :save-handler-callback="savePostCallback"
+    :save-handler-callback="saveCommentCallback"
     box-type="comment"
   />
 </template>

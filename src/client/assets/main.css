@@ -7,15 +7,14 @@
 #app {
   width: 100vw;
   margin: 0 auto;
-  padding: 2rem;
   font-weight: normal;
   height: 100vh;
   padding: 0;
-  background-color: var(--color-primary-100);
+  background-color: var(--color-light-background);
 }
 
 .dark #app {
-  @apply bg-zinc-800 text-slate-100;
+  @apply bg-dark-background text-slate-100;
   scrollbar-color: var(--color-zinc-300) var(--color-zinc-500);
 }
 

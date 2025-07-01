@@ -45,4 +45,5 @@
   --color-on-surface: #171c1f;
   --color-on-secondary: #000000;
   --color-outline: #70787d;
+  --color-light-background: var(--color-primary-100);
 }

@@ -16,4 +16,5 @@
   --color-on-surface-dark: #dee3e6;
   --color-outline-dark: #8a9296;
   --color-on-primary-dark: #003544;
+  --color-dark-background: var(--color-zinc-800);
 }

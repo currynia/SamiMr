@@ -36,16 +36,16 @@ defineExpose({ setVisible });
       title: { class: 'text-xl font-bold dark:text-white ml-1' },
       mask: { class: 'bg-black/10' },
       root: {
-        class: 'w-1/2 h-3/4 p-5 rounded-xl shadow-xl bg-slate-100 dark:bg-black',
+        class: 'w-1/2 h-3/4 p-5 rounded-xl shadow-xl bg-light-background dark:bg-dark-background',
       },
       headerActions: { class: 'w-fit ml-auto self-start' },
       header: { class: 'mb-5 flex flex-row' },
       content: { class: 'flex flex-col gap-2 grow' },
       pcCloseButton: {
         root: {
-          class: '!bg-transparent stroke-secondary-300 cursor-pointer ',
+          class: '!bg-transparent cursor-pointer ',
         },
-        icon: { class: 'text-black' },
+        icon: { class: 'dark:text-white dark:stroke-white text-black' },
         label: { class: 'hidden' },
       },
     }"
@@ -59,7 +59,8 @@ defineExpose({ setVisible });
       :unstyled="false"
       :pt="{
         root: {
-          class: 'bg-slate-100 dark:bg-black dark:text-white rounded-xl border p-2 pl-3 ',
+          class:
+            'bg-light-background dark:bg-dark-background dark:text-white rounded-xl border p-2 pl-3 ',
         },
       }"
     />
@@ -71,7 +72,7 @@ defineExpose({ setVisible });
       :pt="{
         root: {
           class:
-            'grow bg-slate-100 dark:bg-black stroke-black dark:stroke-white flex flex-col rounded-xl dark:text-white',
+            'grow bg-light-background dark:bg-dark-background  stroke-black dark:stroke-white flex flex-col rounded-xl dark:text-white',
         },
         toolbar: { class: 'p-editor-toolbar ql-toolbar ql-snow  border rounded-t-xl' },
         content: { class: 'border-b border-r grow border-l rounded-b-xl' },

@@ -68,7 +68,12 @@ const backgroundColor = (index: number) => ({
         :key="post.body"
         class="cursor-pointer mb-3 list-none h-full"
       >
-        <PostComponent :class="backgroundColor(index)" :post="post" @click="viewFullPost(post)" />
+        <PostComponent
+          class="text-black"
+          :class="backgroundColor(index)"
+          :post="post"
+          @click="viewFullPost(post)"
+        />
       </div>
     </div>
   </div>
