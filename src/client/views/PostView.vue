@@ -3,28 +3,27 @@ import type Post from "@/components/posts/post";
 import PostsManager from "@/components/posts/postsManager";
 import { defineAsyncComponent, ref, useTemplateRef, type Ref } from "vue";
 import { Comment } from "@/components/comments/comment";
-import { postCommentManger } from "@/components/comments/postCommentManager";
+import { postCommentManager } from "@/components/comments/postCommentManager";
 import ToolBar from "@/components/ToolBar.vue";
 import PostComponent from "@/components/posts/PostComponent.vue";
+import { Session } from "@/session";
+import { postJsonFetch } from "@/util";
 
 const PopUpBox = defineAsyncComponent(() => import("@/components/PopUpBox.vue"));
 const postsManager = PostsManager.getPostManager();
 const popUpBox = useTemplateRef<typeof PopUpBox>("popUpBox");
 const displayPost: Post = postsManager.getViewPost();
-const postComment = postCommentManger.function().getPostComment(displayPost.postId!);
+const postComment = postCommentManager.postComments;
 const isPopUpBoxVisible: Ref<boolean> = ref(false);
+const session = Session.getSessionInstance();
 
 const saveCommentCallback = async (s: { title: string; body: string }) => {
-  const comment: Comment = new Comment(displayPost.postId!, s.body, 1);
-  const res: Response = await fetch("/api/post/savecomment", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(comment),
-  });
-  const data = await res.json();
-  comment.commentId = data.insertcomment.commentid; //to fix
-  postComment.addComment(comment);
+  if (session.user.value.id != undefined) {
+    const comment: Comment = new Comment(displayPost.postId!, s.body, session.user.value.id);
+    await postJsonFetch("/api/post/savecomment", comment);
+  }
 };
+postCommentManager.getComments(displayPost.postId!);
 </script>
 
 <template>
@@ -39,7 +38,7 @@ const saveCommentCallback = async (s: { title: string; body: string }) => {
       popUpBox?.setVisible(true);
     "
   />
-  <li v-for="comments in postComment.comments.value.values()" :key="comments.commentId">
+  <li v-for="comments in postComment" :key="comments.commentId">
     <div v-html="comments.body"></div>
   </li>
   <PopUpBox

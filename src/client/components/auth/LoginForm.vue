@@ -11,6 +11,7 @@ import ToolBar from "../ToolBar.vue";
 import { postJsonFetch } from "@/util";
 import { Session } from "@/session";
 import router from "@/router";
+import type { UserDto } from "@dto/userDto";
 
 const checked1 = ref(true);
 const isSubmitting = ref(false);
@@ -23,8 +24,9 @@ async function onFormSubmit(e: FormSubmitEvent<Record<string, unknown>>) {
     const res = await postJsonFetch("/api/auth/login", { username, password });
     if (res.status == 200) {
       isLoginSuccessful.value = true;
-      const payload = await res.json();
-      Session.getSessionInstance().user = payload;
+      const payload: UserDto = await res.json();
+      Session.getSessionInstance().user.value = payload;
+
       Session.getSessionInstance().isAuthenticated.value = true;
       router.push("/");
     } else if (res.status == 401) {

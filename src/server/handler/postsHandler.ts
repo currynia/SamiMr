@@ -1,6 +1,7 @@
 import { type Request, type Response } from "express";
 import type { LoadFeedDto, PostDto } from "@root/dto/postDto";
 import {
+  getCommentsController,
   getPostController,
   saveCommentController,
   savePostController,
@@ -31,7 +32,13 @@ export const saveComment = async (req: Request, res: Response) => {
     res.status(500).send();
   }
 };
-
+export const getComments = async (req: Request, res: Response) => {
+  try {
+    const postId: number = req.body.postId;
+    const comments: Array<CommentDto> = await getCommentsController(db, postId);
+    res.status(200).send(comments);
+  } catch {}
+};
 export const getPosts = async (req: Request, res: Response) => {
   try {
     const body: LoadFeedDto = req.body;
@@ -48,15 +55,12 @@ export const getPosts = async (req: Request, res: Response) => {
   }
 };
 
-// let queuedRequests: Array<() => void> = [];
-// pollPostController(db, queuedRequests);
-
 export const pollGetPosts = async (req: Request, res: Response) => {
   let responded = false;
   const body: LoadFeedDto = req.body;
   db.connect({ direct: true })
     .then((sco) => {
-      sco.client.on("notification", async (data) => {
+      sco.client.on("notification", async () => {
         if (responded) return;
         responded = true;
         const feedPost: Array<PostDto> = await getPostController(
@@ -78,7 +82,6 @@ export const pollGetPosts = async (req: Request, res: Response) => {
   setTimeout(() => {
     if (!responded) {
       responded = true;
-
       res.status(204).end();
     }
   }, 30000);

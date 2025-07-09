@@ -2,6 +2,7 @@ import type { PostDto } from "@dto/postDto";
 import PostsManager from "./components/posts/postsManager";
 import { postJsonFetch } from "./util";
 import { Session } from "./session";
+import type { UserDto } from "@dto/userDto";
 
 const postsManager = PostsManager.getPostManager();
 
@@ -41,7 +42,7 @@ export const initSession = async () => {
   const session = Session.getSessionInstance();
   if (res.status == 200) {
     session.isAuthenticated.value = true;
-    const payload = await res.json();
+    const payload: UserDto = await res.json();
     session.user.value = payload;
   } else {
     session.isAuthenticated.value = false;

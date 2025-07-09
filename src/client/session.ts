@@ -1,7 +1,8 @@
+import type { UserDto } from "@dto/userDto";
 import { ref, type Ref } from "vue";
 
 export class Session {
-  user: Ref<object> = ref({});
+  user: Ref<UserDto> = ref({});
   private static session?: Session;
   isAuthenticated: Ref<boolean> = ref(false);
 

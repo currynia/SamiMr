@@ -1,15 +1,16 @@
-import { PostComment } from "./postComment";
+import { ref } from "vue";
+import type { Comment } from "./comment";
+import { postJsonFetch } from "@/util";
+import type { CommentDto } from "@dto/commentDto";
 
-export const postCommentManger = {
-  function() {
-    const postComments: PostComment[] = [];
-    return {
-      getPostComment: function (postId: number): PostComment {
-        if (postComments[postId] == undefined) {
-          postComments[postId] = new PostComment(postId);
-        }
-        return postComments[postId];
-      }
-    };
-  }
+export const postCommentManager = {
+  postComments: ref<Array<Comment>>([]),
+
+  getComments: async function (postId: number) {
+    const res: Response = await postJsonFetch("/api/public/post/getcomments", {
+      postId,
+    });
+    const comments: Array<CommentDto> = await res.json();
+    this.postComments.value = comments;
+  },
 };

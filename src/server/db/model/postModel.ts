@@ -49,9 +49,16 @@ export const saveCommentModel = (
   );
 };
 
+export const getCommentsModel = (
+  db: IDatabase<unknown>,
+  postId: number
+): Promise<Array<CommentDto>> => {
+  return db.manyOrNone(`SELECT * FROM Comments c WHERE c.parentPost = $1 `, [postId]);
+};
 
 export function getPostsByTime(db: IDatabase<object>, limit: number): Promise<Array<PostDto>> {
-  return db.manyOrNone<PostDto>(`
+  return db.manyOrNone<PostDto>(
+    `
     SELECT p.id as "postId",
     p.title,
     p.body,
@@ -60,11 +67,19 @@ export function getPostsByTime(db: IDatabase<object>, limit: number): Promise<Ar
     INNER JOIN Users u
     ON u.id = p.author_id
     ORDER BY p.created_at DESC, p.id
-    LIMIT $1;`, [limit]);
-};
+    LIMIT $1;`,
+    [limit]
+  );
+}
 
-export function getOldPostsAfterId(db: IDatabase<object>, postId: number, dateTime: Date, limit: number): Promise<Array<PostDto>> {
-  return db.manyOrNone<PostDto>(`SELECT p.id as "postId",
+export function getOldPostsAfterId(
+  db: IDatabase<object>,
+  postId: number,
+  dateTime: Date,
+  limit: number
+): Promise<Array<PostDto>> {
+  return db.manyOrNone<PostDto>(
+    `SELECT p.id as "postId",
     p.title,
     p.body,
     u.username as "authorName",
@@ -73,11 +88,14 @@ export function getOldPostsAfterId(db: IDatabase<object>, postId: number, dateTi
     ON u.id = p.author_id
 WHERE p.created_at < $(dateTime) AND p.id < $(postId)
     ORDER BY p.created_at DESC, p.id
-    LIMIT $(limit);`, { dateTime, postId, limit });
-};
+    LIMIT $(limit);`,
+    { dateTime, postId, limit }
+  );
+}
 
 export const createPollTriggerAfterInsertOnPost = (db: IDatabase<object>) => {
-  return db.none(`
+  return db.none(
+    `
 CREATE OR REPLACE FUNCTION notify_insert() RETURNS TRIGGER AS $$
 BEGIN
 PERFORM pg_notify($1:: text, NEW.id::text);
@@ -88,11 +106,19 @@ $$ LANGUAGE plpgsql;
 CREATE OR REPLACE TRIGGER check_insert
 AFTER INSERT ON POSTS FOR EACH ROW
 EXECUTE FUNCTION notify_insert();
-`, ['postchannel']);
+`,
+    ["postchannel"]
+  );
 };
 
-export function getNewPostsAfterId(db: IDatabase<object>, postId: number, dateTime: Date, limit: number): Promise<Array<PostDto>> {
-  return db.manyOrNone<PostDto>(`SELECT p.id as "postId",
+export function getNewPostsAfterId(
+  db: IDatabase<object>,
+  postId: number,
+  dateTime: Date,
+  limit: number
+): Promise<Array<PostDto>> {
+  return db.manyOrNone<PostDto>(
+    `SELECT p.id as "postId",
     p.title,
     p.body,
     u.username as "authorName",
@@ -101,5 +127,7 @@ export function getNewPostsAfterId(db: IDatabase<object>, postId: number, dateTi
     ON u.id = p.author_id
 WHERE p.created_at > $(dateTime) AND p.id > $(postId)
     ORDER BY p.created_at DESC, p.id
-    LIMIT $(limit);`, { dateTime, postId, limit });
-};
+    LIMIT $(limit);`,
+    { dateTime, postId, limit }
+  );
+}

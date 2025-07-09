@@ -6,9 +6,15 @@ export class Comment implements CommentDto {
   authorId: number;
   body: string;
   date: Date = new Date();
-  childrenComments: Map<number, Comment> = new Map<number, Comment>();
+  childrenComments?: Map<number, Comment>;
 
-  constructor(parentPost: number, body: string, authorId: number, commentId?: number, parentComment?: number) {
+  constructor(
+    parentPost: number,
+    body: string,
+    authorId: number,
+    commentId?: number,
+    parentComment?: number
+  ) {
     this.parentPost = parentPost;
     this.parentComment = parentComment;
     this.body = body;
