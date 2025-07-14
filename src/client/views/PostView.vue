@@ -8,6 +8,7 @@ import ToolBar from "@/components/ToolBar.vue";
 import PostComponent from "@/components/posts/PostComponent.vue";
 import { Session } from "@/session";
 import { postJsonFetch } from "@/util";
+import CommentCard from "@/components/comments/CommentCard.vue";
 
 const PopUpBox = defineAsyncComponent(() => import("@/components/PopUpBox.vue"));
 const postsManager = PostsManager.getPostManager();
@@ -38,9 +39,9 @@ postCommentManager.getComments(displayPost.postId!);
       popUpBox?.setVisible(true);
     "
   />
-  <li v-for="comments in postComment" :key="comments.commentId">
-    <div v-html="comments.body"></div>
-  </li>
+  <div v-for="comment in postComment" :key="comment.commentId">
+    <CommentCard class="bg-secondary-200 text-black m-5" :comment="comment" />
+  </div>
   <PopUpBox
     v-if="isPopUpBoxVisible"
     ref="popUpBox"
