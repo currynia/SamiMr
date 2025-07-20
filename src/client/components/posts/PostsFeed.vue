@@ -33,26 +33,6 @@ const onScroll = (e: Event) => {
   }
 };
 
-console.log(import.meta.env.MODE);
-if (import.meta.env.MODE == "development") {
-  postsManager.addPost(
-    new Post("hello", "I am emily.", "emily Woo", new Date(), 1),
-    new Post(
-      "Kranji Primary School",
-      "I am Tay Apichiya Apichiya am Tay Apichiya Apichiya am Tay Apichiya Apichiya am Tay Apichiya Apichiya am Tay Apichiya Apichiya am Tay Apichiya Apichiya am Tay Apichiya Apichiya am Tay Apichiya Apichiya am Tay Apichiya Apichiya am Tay Apichiya Apichiya am Tay Apichiyapichiya.",
-      "Tay Apichiya",
-      new Date(),
-      1
-    ),
-    new Post("hello", "I am emily.", "emily Woo", new Date(), 1),
-    new Post("hello", "I am emily.", "emily Woo", new Date(), 1),
-    new Post("hello", "I am emily.", "emily Woo", new Date(), 1),
-    new Post("hello", "I am emily.", "emily Woo", new Date(), 1),
-    new Post("hello", "I am emily.", "emily Woo", new Date(), 1),
-    new Post("hello", "I am emily.", "emily Woo", new Date(), 1)
-  );
-}
-
 const backgroundColor = (index: number) => ({
   "bg-secondary-500 hover:bg-secondary-600": index % 2 === 0,
   "bg-tertiary-400 hover:bg-tertiary-500": index % 2 !== 0,

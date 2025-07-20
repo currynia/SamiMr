@@ -7,7 +7,7 @@ import type { UserDto } from "@dto/userDto";
 const postsManager = PostsManager.getPostManager();
 
 export const setUpOnStart = async () => {
-  //initSession();
+  initSession();
   await loadFeedOnStartUp();
   pollGetPosts();
 };

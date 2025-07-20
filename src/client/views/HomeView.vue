@@ -32,7 +32,23 @@ const savePostCallback = async (s: { title: string; body: string }) => {
       />
 
       <PostFeed :class="{ 'w-5/8': !session.isAuthenticated.value }" class="w-3/8" />
-      <div class="w-1/10"></div>
+      <div class="w-1/2 relative overflow-hidden">
+        <iframe
+          frameborder="0"
+          scrolling="no"
+          src="https://mczak.com/code/piano/pianoframe/"
+          style="
+            border: 1px solid #000;
+            border-radius: 25px;
+            overflow: hidden;
+            height: 340px;
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+          "
+          width="700"
+        ></iframe>
+      </div>
     </div>
   </div>
   <PopUpBox
